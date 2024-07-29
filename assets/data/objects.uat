@@ -1,0 +1,14 @@
+`|
+
+`|POINTS|`
+
+ id     x coordinates       y coordinates
+`|0|    |0|                 |0|`
+`|1|    |0|                 |50|`
+`|2|    |50|                |0|`
+`|3|    |50|                |50|`
+
+`|BUTTONS|`
+
+id      start x     start y     width       height      Color r     Color g     Color b
+`|0|    |0|         |0|         |120|       |120|       |1|         |0|         |0|`
