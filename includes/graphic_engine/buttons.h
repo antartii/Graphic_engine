@@ -28,12 +28,10 @@ class Button
         
         Color get_color(void) {return color;}
         
+        
         GLboolean get_visibility(void) {return visible;}
         
         void update_state(Shapes2D::Coord2D mousepos, GLboolean is_clicking) {area.is_contained(mousepos)? hovered = true : hovered = false;}
-
-    // TODO make it able to be any shape
-    // TODO check mouse hovering & clicking
 
         static std::map<std::string, Button> extract_from_uat(std::vector<std::vector<std::string>> extracted_objects);
 };

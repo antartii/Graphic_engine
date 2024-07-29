@@ -16,15 +16,10 @@ enum class SHAPE_TYPE
     COMPLEX
 };
 
-// TODO : all of the remaining shapes
-
 class Shapes2D {
     public :
         class Coord2D;
         class Quad;
-
-        // TODO
-        // based on it's number of points we could just create a shape with them ???
 };
 
 class Shapes2D::Coord2D

@@ -23,11 +23,32 @@ void Engine::set_mouse_functions(void (*mouse)(int button, int state, int x, int
     glutPassiveMotionFunc(motion);
 }
 
+void Engine::set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, int x, int y))
+{
+    glutKeyboardFunc(keyboard_pressed);
+}
+
+void Engine::init()
+{
+    set_objects_path("assets/data/objects.uat");
+    import_objects();
+}
+
+void Engine::update()
+{
+    Shapes2D::Coord2D mousepos = get_mousepos();
+
+    for (auto &pair : this->buttons) {
+        pair.second.update_state(mousepos, false);
+    }
+}
+
 void Engine::display()
 {
-    // BUTTONS
-    for (auto& pair : this->buttons) {
-        if (pair.second.get_visibility()) {
+    for (auto &pair : this->buttons)
+    {
+        if (pair.second.get_visibility())
+        {
             draw(pair.second.get_area(), pair.second.get_color());
         }
     }

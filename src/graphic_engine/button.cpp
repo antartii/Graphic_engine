@@ -16,7 +16,6 @@ std::map<std::string, Button> Button::extract_from_uat(std::vector<std::vector<s
             else
                 is_reading = false;
         } else if (is_reading) {
-            // for 2D buttons
             if (extracted_objects[i].size() == 8) {
                 width = std::stof(extracted_objects[i][3]);
                 height = std::stof(extracted_objects[i][4]);
@@ -27,13 +26,6 @@ std::map<std::string, Button> Button::extract_from_uat(std::vector<std::vector<s
 
                 buttons.insert({extracted_objects[i][0], new_button});
             }
-
-            // for 3D buttons (later update) or other buttons shape than quad
-            /*
-            if (extracted_objects[i].size() >= ???) {
-                
-            }
-            */
         }
     } 
     return buttons;

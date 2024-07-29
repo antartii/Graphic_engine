@@ -25,6 +25,13 @@ enum class DIRECTION
     TOP_RIGHT,
 };
 
+enum class KEY
+{
+    MOUSE_LEFT = 0,
+    MOUSE_RIGHT,
+    MOUSE_MIDDLE,
+};
+
 GLfloat screen_coord_to_viewport(GLfloat coord, GLfloat size);
 
 std::string get_file_content(std::string file_path);

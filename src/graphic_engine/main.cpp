@@ -10,15 +10,10 @@ Engine engine;
 GameManager gamemanager;
 Window window;
 
-void setup()
-{
-    engine.set_objects_path("assets/data/objects.uat");
-    engine.import_objects();
-}
-
 void idle()
 {
     gamemanager.update();
+    engine.update();
     glutPostRedisplay();
     std::this_thread::sleep_for(std::chrono::nanoseconds(1));
 }
@@ -39,9 +34,14 @@ void reshape(GLint width, GLint height)
     glViewport(0, 0, width, height);
 }
 
+void keyboard_pressed(unsigned char key, int x, int y)
+{
+
+}
+
 void mouse(int button, int state, int x, int y)
 {
-    
+
 }
 
 void motion(int x, int y)
@@ -63,16 +63,10 @@ int main(int argc, char **argv, char **env)
     engine.add_window(&window);
     engine.set_main_functions(display, idle, reshape);
     engine.set_mouse_functions(mouse, motion, passive_motion);
+    engine.set_keyboard_functions(keyboard_pressed);
 
-    setup();
+    engine.init();
     gamemanager.init();
     engine.start();
     return 0;
 }
-
-// TODO
-/*
-
-Draw relative to another object
-
-*/
