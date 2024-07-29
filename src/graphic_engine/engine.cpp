@@ -1,6 +1,6 @@
 #include "engine.h"
 
-void Engine::add_window(Window *window)
+void Engine::set_window(Window *window)
 {
     if (this->status >= STATUS::INITIALIZED && window->get_status() >= STATUS::INITIALIZED)
     {
@@ -38,7 +38,8 @@ void Engine::update()
 {
     Shapes2D::Coord2D mousepos = get_mousepos();
 
-    for (auto &pair : this->buttons) {
+    for (auto &pair : this->buttons)
+    {
         pair.second.update_state(mousepos, false);
     }
 }
@@ -112,4 +113,25 @@ void Engine::import_objects(void)
     std::vector<std::vector<std::string>> objects_data = Uat::string_to_table(file_content);
 
     buttons = Button::extract_from_uat(objects_data);
+}
+
+void Engine::add_active_key(unsigned char key) {
+    auto it = std::find(active_key.begin(), active_key.end(), key);
+
+    if (it == active_key.end())
+        active_key.push_back(key);
+}
+
+void Engine::release_active_key(unsigned char key) {
+    auto it = std::find(active_key.begin(), active_key.end(), key);
+
+    if (it != active_key.end())
+        active_key.erase(it);
+}
+
+GLboolean Engine::is_key_active(unsigned char key) {
+    auto it = std::find(active_key.begin(), active_key.end(), key);
+
+    if (it != active_key.end())
+        return true;
 }

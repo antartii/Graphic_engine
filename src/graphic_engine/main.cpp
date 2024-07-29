@@ -36,7 +36,12 @@ void reshape(GLint width, GLint height)
 
 void keyboard_pressed(unsigned char key, int x, int y)
 {
+    engine.add_active_key(key);
+}
 
+void keyboard_released(unsigned char key, int x, int y)
+{
+    engine.release_active_key(key);
 }
 
 void mouse(int button, int state, int x, int y)
@@ -60,7 +65,7 @@ int main(int argc, char **argv, char **env)
     gamemanager = GameManager(&engine);
     window = Window(300, 300, "test", GLUT_DOUBLE | GLUT_RGB);
 
-    engine.add_window(&window);
+    engine.set_window(&window);
     engine.set_main_functions(display, idle, reshape);
     engine.set_mouse_functions(mouse, motion, passive_motion);
     engine.set_keyboard_functions(keyboard_pressed);
