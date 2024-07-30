@@ -59,6 +59,14 @@ void mouse(int button, int state, int x, int y)
     }
 }
 
+void mouse_entry(int state)
+{
+    if (state == GLUT_LEFT)
+        engine.set_mouse_in_window(false);
+    else if (state == GLUT_ENTERED)
+        engine.set_mouse_in_window(true);
+}
+
 void motion(int x, int y)
 {
     engine.set_mousepos_viewport(Shapes2D::Coord2D(x, engine.get_window()->get_height() - y));
@@ -77,7 +85,7 @@ int main(int argc, char **argv, char **env)
 
     engine.set_window(&window);
     engine.set_main_functions(display, idle, reshape);
-    engine.set_mouse_functions(mouse, motion, passive_motion);
+    engine.set_mouse_functions(mouse, motion, passive_motion, mouse_entry);
     engine.set_keyboard_functions(keyboard_pressed, keyboard_released);
 
     engine.init();

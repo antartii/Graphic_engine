@@ -52,9 +52,7 @@ class Shapes2D::Quad
             start(start), end(Coord2D(start.x + width, start.y + height)), width(width), height(height) {}
         
         Coord2D get_point(DIRECTION direction);
-
         SHAPE_TYPE shape_type(void) {return SHAPE_TYPE::QUAD;}
-
         GLboolean is_contained(Coord2D pos);
 };
 

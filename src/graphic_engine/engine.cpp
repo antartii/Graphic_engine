@@ -15,11 +15,12 @@ void Engine::set_main_functions(void (*display)(), void (*idle)(), void (*reshap
     glutReshapeFunc(reshape);
 }
 
-void Engine::set_mouse_functions(void (*mouse)(int button, int state, int x, int y), void (*motion)(int x, int y), void (*passive_motion)(int x, int y))
+void Engine::set_mouse_functions(void (*mouse)(int button, int state, int x, int y), void (*motion)(int x, int y), void (*passive_motion)(int x, int y), void (*mouse_entry)(int state))
 {
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
     glutPassiveMotionFunc(motion);
+    glutEntryFunc(mouse_entry);
 }
 
 void Engine::set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, int x, int y), void (*keyboard_up)(unsigned char key, int x, int y))
@@ -39,7 +40,8 @@ void Engine::update()
     Shapes2D::Coord2D mousepos = get_mousepos();
 
     for (auto &pair : this->buttons)
-        pair.second.update_state(mousepos, is_key_active(SPECIAL_KEYS::MOUSE_LEFT_BUTTON));
+        if (is_mouse_in_window)
+            pair.second.update_state(mousepos, is_key_active(SPECIAL_KEYS::MOUSE_LEFT_BUTTON));
 }
 
 void Engine::display()

@@ -1,7 +1,6 @@
 #include "buttons.h"
 
-std::map<std::string, Button> Button::extract_from_uat(std::vector<std::vector<std::string>> extracted_objects)
-{
+std::map<std::string, Button> Button::extract_from_uat(std::vector<std::vector<std::string>> extracted_objects) {
     std::map<std::string, Button> buttons;
     GLboolean is_reading = false;
     GLfloat width;
@@ -15,8 +14,10 @@ std::map<std::string, Button> Button::extract_from_uat(std::vector<std::vector<s
                 is_reading = true;
             else
                 is_reading = false;
-        } else if (is_reading) {
-            if (extracted_objects[i].size() == 8) {
+        }
+        else if (is_reading) {
+            if (extracted_objects[i].size() == 8)
+            {
                 width = std::stof(extracted_objects[i][3]);
                 height = std::stof(extracted_objects[i][4]);
                 start = Shapes2D::Coord2D(std::stof(extracted_objects[i][1]), std::stof(extracted_objects[i][2]));
@@ -27,6 +28,26 @@ std::map<std::string, Button> Button::extract_from_uat(std::vector<std::vector<s
                 buttons.insert({extracted_objects[i][0], new_button});
             }
         }
-    } 
+    }
     return buttons;
+}
+
+void Button::set_function(void (*function)(), BUTTON_STATUS button_status)
+{
+    switch (button_status) {
+    case BUTTON_STATUS::HOVERED:
+        this->hovered_function = function;
+        break;
+    case BUTTON_STATUS::CLICKED:
+        this->clicked_function = function;
+        break;
+    case BUTTON_STATUS::UNCLICKED:
+        this->unclicked_function = function;
+        break;
+    case BUTTON_STATUS::UNHOVERED:
+        this->unhovered_function = function;
+        break;
+    default:
+        break;
+    }
 }

@@ -31,6 +31,7 @@ private:
 
     Window *window = nullptr;
 
+    GLboolean is_mouse_in_window = false;
     std::vector<unsigned char> active_key;
     std::vector<SPECIAL_KEYS> active_special_key;
 
@@ -39,10 +40,8 @@ private:
 
 public:
     Engine(void) {}
-    Engine(int argc, char **argv, char **env) : argc(argc), argv(argv), env(env), status(STATUS::INITIALIZED)
-    {
-        glutInit(&argc, argv);
-    }
+    Engine(int argc, char **argv, char **env) : argc(argc), argv(argv), env(env), status(STATUS::INITIALIZED) 
+        {glutInit(&argc, argv);}
 
     // GETTER
     Window *get_window(void) { return window; }
@@ -54,9 +53,10 @@ public:
     void set_mousepos_viewport(Shapes2D::Coord2D new_mousepos) { mousepos = new_mousepos; }
     void set_objects_path(std::string objects_path) { this->objects_path = objects_path; }
     void set_main_functions(void (*display)(), void (*idle)(), void (*reshape)(int, int));
-    void set_mouse_functions(void (*mouse)(int button, int state, int x, int y), void (*motion)(int x, int y), void (*passivemotion)(int x, int y));
+    void set_mouse_functions(void (*mouse)(int button, int state, int x, int y), void (*motion)(int x, int y), void (*passivemotion)(int x, int y), void (*mouse_entry)(int state));
     void set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, int x, int y), void (*keyboard_up)(unsigned char key, int x, int y));
     void set_window(Window *window);
+    void set_mouse_in_window(GLboolean is_mouse_in_window) {this->is_mouse_in_window = is_mouse_in_window;}
 
     // BASE FUNC
     void init();
