@@ -33,8 +33,5 @@ void GameManager::init()
 
 void GameManager::update()
 {
-    Shapes2D::Coord2D mousepos = engine->get_mousepos();
-    Button button = Button(Shapes2D::Quad(Shapes2D::Coord2D(0, 0), Shapes2D::Coord2D(50, 50)));
 
-    button.update_state(mousepos, false);
 }

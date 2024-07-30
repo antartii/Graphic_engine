@@ -42,24 +42,9 @@ class Button
         void set_color(Color color) {this->color = color;}
         void set_function(void (*function)(), BUTTON_STATUS button_status);
 
-        void update_state(Shapes2D::Coord2D mousepos, GLboolean is_clicking) {
-            GLboolean new_hovered = area.is_contained(mousepos);
+        void update_state(Shapes2D::Coord2D mousepos, GLboolean is_clicking);
 
-            if (!hovered && new_hovered && hovered_function)
-                hovered_function();
-            else if (hovered && !new_hovered && hovered_function)
-                unhovered_function();
-            hovered = new_hovered;
-            if (hovered) {
-                if (!clicked && is_clicking && clicked_function)
-                    clicked_function();
-                else if (clicked && !is_clicking && unclicked_function)
-                    unclicked_function();
-            }
-            hovered ? clicked = is_clicking : clicked = false;
-        }
-
-        static std::map<std::string, Button> extract_from_uat(std::vector<std::vector<std::string>> extracted_objects);
+        static std::map<std::string, Button> extract_from_table(std::vector<std::vector<std::string>> extracted_objects, std::map<std::string, Shapes2D::Coord2D> points);
 };
 
 #endif

@@ -2,9 +2,11 @@
     #define COORD2D
 
     #include "utils.h"
-    #include <iostream>
 
+    #include <iostream>
     #include <GL/freeglut.h>
+    #include <map>
+    #include <vector>
 
 enum class SHAPE_TYPE
 {
@@ -19,7 +21,11 @@ enum class SHAPE_TYPE
 class Shapes2D {
     public :
         class Coord2D;
+        class Line;
         class Quad;
+
+        static Shapes2D::Coord2D point_to_viewport(Shapes2D::Coord2D point, Coord2D window_resolution);
+        static GLboolean is_contained(std::vector<Shapes2D::Line> shape_lines, Shapes2D::Coord2D point);
 };
 
 class Shapes2D::Coord2D
@@ -32,28 +38,29 @@ class Shapes2D::Coord2D
         Coord2D(GLfloat x, GLfloat y): x(x), y(y)   {}
 
         SHAPE_TYPE shape_type(void) {return SHAPE_TYPE::POINT;}
+
+        static std::map<std::string, Shapes2D::Coord2D> extract_from_table(std::vector<std::vector<std::string>> table);
 };
 
-class Shapes2D::Quad
-{
-    private :
-        Coord2D start = Coord2D(0, 0);
-        Coord2D end = Coord2D(0, 0);
-        GLfloat width = 0;
-        GLfloat height = 0;
-
+class Shapes2D::Line {
     public :
+        Coord2D points[2] = {Coord2D(0, 0), Coord2D(0, 0)};
+
+        Line(){}
+        Line(Coord2D points[2]) { for (int i = 0; i < 2; i += 1) this->points[i] = points[i];}
+
+        SHAPE_TYPE shape_type(void) {return SHAPE_TYPE::LINE;}
+};
+
+class Shapes2D::Quad {
+    public :
+        Coord2D points[4] = {Coord2D(0,0), Coord2D(0,0), Coord2D(0,0), Coord2D(0,0)};
 
         Quad() {}
-        Quad(Coord2D start, Coord2D end);
-        Quad(GLfloat width, GLfloat height):
-            width(width), height(height), end(Coord2D(width, height)) {}
-        Quad(Coord2D start, GLfloat width, GLfloat height):
-            start(start), end(Coord2D(start.x + width, start.y + height)), width(width), height(height) {}
-        
-        Coord2D get_point(DIRECTION direction);
+        Quad(Coord2D points[4]) {for (int i = 0; i < 4; i += 1) this->points[i] = points[i];};
+
         SHAPE_TYPE shape_type(void) {return SHAPE_TYPE::QUAD;}
-        GLboolean is_contained(Coord2D pos);
+        std::vector<Line> get_lines(void);
 };
 
 #endif

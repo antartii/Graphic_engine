@@ -66,20 +66,18 @@ void Engine::draw(Shapes2D::Coord2D pixel, Color color)
 
 void Engine::draw(Shapes2D::Quad quad, Color color)
 {
-    Shapes2D::Coord2D bottom_left = quad.get_point(DIRECTION::BOTTOM_LEFT);
-    Shapes2D::Coord2D top_right = quad.get_point(DIRECTION::TOP_RIGHT);
-
-    GLfloat start_viewport_x = screen_coord_to_viewport(bottom_left.x, window->get_width());
-    GLfloat start_viewport_y = screen_coord_to_viewport(bottom_left.y, window->get_height());
-    GLfloat end_viewport_x = screen_coord_to_viewport(top_right.x, window->get_width());
-    GLfloat end_viewport_y = screen_coord_to_viewport(top_right.y, window->get_height());
+    Shapes2D::Coord2D window_resolution = Shapes2D::Coord2D(window->get_height(), window->get_width());
+    Shapes2D::Coord2D points[4] = {
+        Shapes2D::point_to_viewport(quad.points[0], window_resolution),
+        Shapes2D::point_to_viewport(quad.points[1], window_resolution),
+        Shapes2D::point_to_viewport(quad.points[2], window_resolution),
+        Shapes2D::point_to_viewport(quad.points[3], window_resolution),
+    };
 
     glColor3f(color.r, color.g, color.b);
     glBegin(GL_QUADS);
-    glVertex2d(start_viewport_x, start_viewport_y);
-    glVertex2d(start_viewport_x, end_viewport_y);
-    glVertex2d(end_viewport_x, end_viewport_y);
-    glVertex2d(end_viewport_x, start_viewport_y);
+    for (int i = 0; i < 4; i += 1)
+        glVertex2d(points[i].x, points[i].y);
     glEnd();
 }
 
@@ -91,26 +89,13 @@ void Engine::draw_viewport(Shapes2D::Coord2D pixel, Color color)
     glEnd();
 }
 
-void Engine::draw_viewport(Shapes2D::Quad quad, Color color)
-{
-    Shapes2D::Coord2D bottom_left = quad.get_point(DIRECTION::BOTTOM_LEFT);
-    Shapes2D::Coord2D top_right = quad.get_point(DIRECTION::TOP_RIGHT);
-
-    glColor3f(color.r, color.g, color.b);
-    glBegin(GL_QUADS);
-    glVertex2d(bottom_left.x, bottom_left.y);
-    glVertex2d(bottom_left.x, top_right.y);
-    glVertex2d(top_right.x, top_right.y);
-    glVertex2d(top_right.x, bottom_left.y);
-    glEnd();
-}
-
 void Engine::import_objects(void)
 {
     std::string file_content = get_file_content(objects_path);
     std::vector<std::vector<std::string>> objects_data = Uat::string_to_table(file_content);
+    std::map<std::string, Shapes2D::Coord2D> extracted_points = Shapes2D::Coord2D::extract_from_table(objects_data);
 
-    buttons = Button::extract_from_uat(objects_data);
+    buttons = Button::extract_from_table(objects_data, extracted_points);
 }
 
 void Engine::add_active_key(unsigned char key)

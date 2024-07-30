@@ -1,32 +1,17 @@
 #include "buttons.h"
 
-std::map<std::string, Button> Button::extract_from_uat(std::vector<std::vector<std::string>> extracted_objects) {
+std::map<std::string, Button> Button::extract_from_table(std::vector<std::vector<std::string>> table, std::map<std::string, Shapes2D::Coord2D> points) {
     std::map<std::string, Button> buttons;
     GLboolean is_reading = false;
-    GLfloat width;
-    GLfloat height;
-    Shapes2D::Coord2D start;
-    Button new_button;
+    Shapes2D::Coord2D quad_points[4];
 
-    for (size_t i = 0; i < extracted_objects.size(); i += 1) {
-        if (extracted_objects[i].size() == 1) {
-            if (extracted_objects[i][0] == "BUTTONS")
-                is_reading = true;
-            else
-                is_reading = false;
-        }
-        else if (is_reading) {
-            if (extracted_objects[i].size() == 8)
-            {
-                width = std::stof(extracted_objects[i][3]);
-                height = std::stof(extracted_objects[i][4]);
-                start = Shapes2D::Coord2D(std::stof(extracted_objects[i][1]), std::stof(extracted_objects[i][2]));
-
-                new_button = Button(Shapes2D::Quad(start, width, height));
-                new_button.set_color(Color::red());
-
-                buttons.insert({extracted_objects[i][0], new_button});
-            }
+    for (size_t i = 0; i < table.size(); i += 1) {
+        if (table[i].size() == 1)
+            table[i][0] == "BUTTONS" ? is_reading = true : is_reading = false;
+        else if (is_reading && table[i].size() >= 4) {
+            for (int j = 0; j < 4; j += 1)
+                quad_points[j] = points[table[i][j + 1]];
+            buttons.insert({table[i][0], Button(Shapes2D::Quad(quad_points))});
         }
     }
     return buttons;
@@ -50,4 +35,22 @@ void Button::set_function(void (*function)(), BUTTON_STATUS button_status)
     default:
         break;
     }
+}
+
+void Button::update_state(Shapes2D::Coord2D mousepos, GLboolean is_clicking)
+{
+    GLboolean new_hovered = Shapes2D::is_contained(area.get_lines(), mousepos);
+
+    if (!hovered && new_hovered && hovered_function)
+        hovered_function();
+    else if (hovered && !new_hovered && hovered_function)
+        unhovered_function();
+    hovered = new_hovered;
+    if (hovered) {
+        if (!clicked && is_clicking && clicked_function)
+                clicked_function();
+        else if (clicked && !is_clicking && unclicked_function)
+            unclicked_function();
+    }
+    hovered ? clicked = is_clicking : clicked = false;
 }

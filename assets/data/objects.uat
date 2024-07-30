@@ -3,12 +3,12 @@
 `|POINTS|`
 
  id     x coordinates       y coordinates
-`|0|    |0|                 |0|`
-`|1|    |0|                 |50|`
-`|2|    |50|                |0|`
-`|3|    |50|                |50|`
+`|0|    |50|                 |0|`
+`|1|    |100|                 |50|`
+`|2|    |50|                |100|`
+`|3|    |0|                |50|`
 
-`|BUTTONS|`
+`|BUTTONS|` To shape ?? into buttons ???
 
-id      start x     start y     width       height      Color r     Color g     Color b
-`|0|    |0|         |0|         |120|       |120|       |1|         |0|         |0|`
+id      point 1     point 2     point 3     point 4
+`|0|    |0|         |1|         |2|         |3|`
