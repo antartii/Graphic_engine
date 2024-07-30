@@ -25,13 +25,16 @@ class Button
 
         void set_visibility(GLboolean visibility) {visible = visibility;}
         void set_color(Color color) {this->color = color;}
-        
+
         Color get_color(void) {return color;}
         
         
         GLboolean get_visibility(void) {return visible;}
         
-        void update_state(Shapes2D::Coord2D mousepos, GLboolean is_clicking) {area.is_contained(mousepos)? hovered = true : hovered = false;}
+        void update_state(Shapes2D::Coord2D mousepos, GLboolean is_clicking) {
+            hovered = area.is_contained(mousepos);
+            hovered == true ? clicked = is_clicking : clicked = false;
+        }
 
         static std::map<std::string, Button> extract_from_uat(std::vector<std::vector<std::string>> extracted_objects);
 };

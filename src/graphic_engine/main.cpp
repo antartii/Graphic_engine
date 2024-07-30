@@ -46,7 +46,17 @@ void keyboard_released(unsigned char key, int x, int y)
 
 void mouse(int button, int state, int x, int y)
 {
-
+    if (button == GLUT_LEFT_BUTTON) {
+        if (state == GLUT_DOWN)
+            engine.add_active_key(SPECIAL_KEYS::MOUSE_LEFT_BUTTON);
+        else
+            engine.release_active_key(SPECIAL_KEYS::MOUSE_LEFT_BUTTON);
+    } else if (button == GLUT_RIGHT_BUTTON) {
+        if (state == GLUT_DOWN)
+            engine.add_active_key(SPECIAL_KEYS::MOUSE_RIGHT_BUTTON);
+        else
+            engine.release_active_key(SPECIAL_KEYS::MOUSE_RIGHT_BUTTON);
+    }
 }
 
 void motion(int x, int y)
@@ -68,7 +78,7 @@ int main(int argc, char **argv, char **env)
     engine.set_window(&window);
     engine.set_main_functions(display, idle, reshape);
     engine.set_mouse_functions(mouse, motion, passive_motion);
-    engine.set_keyboard_functions(keyboard_pressed);
+    engine.set_keyboard_functions(keyboard_pressed, keyboard_released);
 
     engine.init();
     gamemanager.init();

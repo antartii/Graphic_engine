@@ -2,8 +2,7 @@
 
 void Engine::set_window(Window *window)
 {
-    if (this->status >= STATUS::INITIALIZED && window->get_status() >= STATUS::INITIALIZED)
-    {
+    if (this->status >= STATUS::INITIALIZED && window->get_status() >= STATUS::INITIALIZED) {
         this->window = window;
         this->status = STATUS::READY;
     }
@@ -23,9 +22,10 @@ void Engine::set_mouse_functions(void (*mouse)(int button, int state, int x, int
     glutPassiveMotionFunc(motion);
 }
 
-void Engine::set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, int x, int y))
+void Engine::set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, int x, int y), void (*keyboard_up)(unsigned char key, int x, int y))
 {
     glutKeyboardFunc(keyboard_pressed);
+    glutKeyboardUpFunc(keyboard_up);
 }
 
 void Engine::init()
@@ -39,17 +39,13 @@ void Engine::update()
     Shapes2D::Coord2D mousepos = get_mousepos();
 
     for (auto &pair : this->buttons)
-    {
-        pair.second.update_state(mousepos, false);
-    }
+        pair.second.update_state(mousepos, is_key_active(SPECIAL_KEYS::MOUSE_LEFT_BUTTON));
 }
 
 void Engine::display()
 {
-    for (auto &pair : this->buttons)
-    {
-        if (pair.second.get_visibility())
-        {
+    for (auto &pair : this->buttons) {
+        if (pair.second.get_visibility()) {
             draw(pair.second.get_area(), pair.second.get_color());
         }
     }
@@ -115,23 +111,49 @@ void Engine::import_objects(void)
     buttons = Button::extract_from_uat(objects_data);
 }
 
-void Engine::add_active_key(unsigned char key) {
+void Engine::add_active_key(unsigned char key)
+{
     auto it = std::find(active_key.begin(), active_key.end(), key);
 
     if (it == active_key.end())
         active_key.push_back(key);
 }
 
-void Engine::release_active_key(unsigned char key) {
+void Engine::release_active_key(unsigned char key)
+{
     auto it = std::find(active_key.begin(), active_key.end(), key);
 
     if (it != active_key.end())
         active_key.erase(it);
 }
 
-GLboolean Engine::is_key_active(unsigned char key) {
+GLboolean Engine::is_key_active(unsigned char key)
+{
     auto it = std::find(active_key.begin(), active_key.end(), key);
 
     if (it != active_key.end())
         return true;
+    return false;
+}
+
+void Engine::add_active_key(SPECIAL_KEYS key) {
+    auto it = std::find(active_special_key.begin(), active_special_key.end(), key);
+
+    if (it == active_special_key.end())
+        active_special_key.push_back(key);
+}
+
+void Engine::release_active_key(SPECIAL_KEYS key) {
+    auto it = std::find(active_special_key.begin(), active_special_key.end(), key);
+
+    if (it != active_special_key.end())
+        active_special_key.erase(it);
+}
+
+GLboolean Engine::is_key_active(SPECIAL_KEYS key) {
+    auto it = std::find(active_special_key.begin(), active_special_key.end(), key);
+
+    if (it != active_special_key.end())
+        return true;
+    return false;
 }

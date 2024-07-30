@@ -13,6 +13,11 @@
 #include <map>
 #include <algorithm>
 
+enum class SPECIAL_KEYS {
+    MOUSE_LEFT_BUTTON,
+    MOUSE_RIGHT_BUTTON
+};
+
 class Engine
 {
 private:
@@ -27,6 +32,7 @@ private:
     Window *window = nullptr;
 
     std::vector<unsigned char> active_key;
+    std::vector<SPECIAL_KEYS> active_special_key;
 
     std::string objects_path = "assets/data/objects.uat";
     std::map<std::string, Button> buttons;
@@ -49,7 +55,7 @@ public:
     void set_objects_path(std::string objects_path) { this->objects_path = objects_path; }
     void set_main_functions(void (*display)(), void (*idle)(), void (*reshape)(int, int));
     void set_mouse_functions(void (*mouse)(int button, int state, int x, int y), void (*motion)(int x, int y), void (*passivemotion)(int x, int y));
-    void set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, int x, int y));
+    void set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, int x, int y), void (*keyboard_up)(unsigned char key, int x, int y));
     void set_window(Window *window);
 
     // BASE FUNC
@@ -67,10 +73,13 @@ public:
     // DATA
     void import_objects();
 
-    // KEYBOARD
+    // INPUTS
     void add_active_key(unsigned char key);
     void release_active_key(unsigned char key);
     GLboolean is_key_active(unsigned char key);
+    void add_active_key(SPECIAL_KEYS key);
+    void release_active_key(SPECIAL_KEYS key);
+    GLboolean is_key_active(SPECIAL_KEYS key);
 };
 
 #endif
