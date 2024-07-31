@@ -1,4 +1,5 @@
 #include "gamemanager.h"
+#include <GL/freeglut.h>
 
 void test(void)
 {
@@ -22,6 +23,7 @@ void test1(void)
 
 void GameManager::init()
 {
+    engine->window->reshape_window(300, 300);
     Button *button_with_the_idea_la = engine->get_button("0");
 
     button_with_the_idea_la->set_visibility(true);

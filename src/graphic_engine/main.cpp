@@ -28,15 +28,16 @@ void display()
 
 void reshape(GLint width, GLint height)
 {
-    engine.get_window()->set_width(width);
-    engine.get_window()->set_height(height);
+    engine.window->set_height(height);
+    engine.window->set_width(width);
 
     glViewport(0, 0, width, height);
 }
 
+
 void keyboard_pressed(unsigned char key, int x, int y)
 {
-    engine.add_active_key(key);
+
 }
 
 void keyboard_released(unsigned char key, int x, int y)
@@ -69,7 +70,7 @@ void mouse_entry(int state)
 
 void motion(int x, int y)
 {
-    engine.set_mousepos_viewport(Shapes2D::Coord2D(x, engine.get_window()->get_height() - y));
+    engine.set_mousepos_viewport(Shapes2D::Coord2D(x, engine.window->get_height() - y));
 }
 
 void passive_motion(int x, int y)
@@ -81,9 +82,9 @@ int main(int argc, char **argv, char **env)
 {
     engine = Engine(argc, argv, env);
     gamemanager = GameManager(&engine);
-    window = Window(300, 300, "test", GLUT_DOUBLE | GLUT_RGB);
+    window = Window(0, 0, "test", GLUT_DOUBLE | GLUT_RGB);
 
-    engine.set_window(&window);
+    engine.window = &window;
     engine.set_main_functions(display, idle, reshape);
     engine.set_mouse_functions(mouse, motion, passive_motion, mouse_entry);
     engine.set_keyboard_functions(keyboard_pressed, keyboard_released);

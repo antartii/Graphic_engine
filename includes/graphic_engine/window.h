@@ -2,6 +2,7 @@
     #define WINDOW
 
     #include "utils.h"
+    #include "shapes2D.h"
 
     #include <GL/freeglut.h>
     #include <iostream>
@@ -12,9 +13,12 @@ class Window
         STATUS status = STATUS::NOT_INITIALIZED;
 
         GLint display_mode = 0;
+        GLboolean is_fullscreen = true;
 
-        GLint height = 0;
-        GLint width = 0;
+        GLint height = 300;
+        GLint width = 300;
+
+        Shapes2D::Coord2D position = Shapes2D::Coord2D(1, 1);
         std::string title = "";
 
     public :
@@ -27,8 +31,10 @@ class Window
         GLfloat get_height(void) {return height;}
         GLfloat get_width(void) {return width;}
 
-        void set_width(GLint width) {this->width = width;}
-        void set_height(GLint height) {this->height = height;}
+        void set_height(GLfloat height) {this->height = height;}
+        void set_width(GLfloat width) {this->width = width;}
+
+        void reshape_window(GLint width, GLint height);
 
         void start(void);
 };

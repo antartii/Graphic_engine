@@ -1,13 +1,5 @@
 #include "engine.h"
 
-void Engine::set_window(Window *window)
-{
-    if (this->status >= STATUS::INITIALIZED && window->get_status() >= STATUS::INITIALIZED) {
-        this->window = window;
-        this->status = STATUS::READY;
-    }
-}
-
 void Engine::set_main_functions(void (*display)(), void (*idle)(), void (*reshape)(int, int))
 {
     glutIdleFunc(idle);
@@ -31,7 +23,7 @@ void Engine::set_keyboard_functions(void (*keyboard_pressed)(unsigned char key, 
 
 void Engine::init()
 {
-    set_objects_path("assets/data/objects.uat");
+    objects_path = "assets/data/objects.uat";
     import_objects();
 }
 
