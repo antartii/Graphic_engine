@@ -9,10 +9,24 @@ void Window::start(void)
     status == STATUS::READY;
 }
 
-void Window::reshape_window(GLint width, GLint height)
+void Window::reshape(GLint width, GLint height)
 {
     this->width = width;
     this->height = height;
     glutReshapeWindow(width, height);
-    glutPositionWindow(position.x, position.y);
+}
+
+void Window::toggle_fullscreen(void)
+{
+    resizing = true;
+    if (!fullscreen) {
+        std::cout << "full size : " << width << " , " << height << std::endl;
+        glutFullScreen();
+    } else {
+        std::cout << "unfull size : " << width << " , " << height << std::endl;
+        glutReshapeWindow(width, height);
+        glutPositionWindow(0, 0);
+    }
+    fullscreen = !fullscreen;
+    resizing = false;
 }

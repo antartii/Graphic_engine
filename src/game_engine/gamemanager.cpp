@@ -23,7 +23,7 @@ void test1(void)
 
 void GameManager::init()
 {
-    engine->window->reshape_window(300, 300);
+    engine->window->reshape(300, 300);
     Button *button_with_the_idea_la = engine->get_button("0");
 
     button_with_the_idea_la->set_visibility(true);

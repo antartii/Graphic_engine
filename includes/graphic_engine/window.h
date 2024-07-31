@@ -13,10 +13,13 @@ class Window
         STATUS status = STATUS::NOT_INITIALIZED;
 
         GLint display_mode = 0;
-        GLboolean is_fullscreen = true;
+        GLboolean fullscreen = false;
+        GLboolean resizing = false;
 
         GLint height = 300;
         GLint width = 300;
+        GLint stored_height = 300;
+        GLint stored_width = 300;
 
         Shapes2D::Coord2D position = Shapes2D::Coord2D(1, 1);
         std::string title = "";
@@ -30,11 +33,15 @@ class Window
         STATUS get_status(void) {return status;}
         GLfloat get_height(void) {return height;}
         GLfloat get_width(void) {return width;}
+        
+        GLboolean is_fullscreen(void) {return fullscreen;}
+        GLboolean is_resizing(void) {return resizing;}
 
         void set_height(GLfloat height) {this->height = height;}
         void set_width(GLfloat width) {this->width = width;}
 
-        void reshape_window(GLint width, GLint height);
+        void reshape(GLint width, GLint height);
+        void toggle_fullscreen(void);
 
         void start(void);
 };

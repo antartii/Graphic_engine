@@ -15,7 +15,7 @@ void idle()
     gamemanager.update();
     engine.update();
     glutPostRedisplay();
-    std::this_thread::sleep_for(std::chrono::nanoseconds(1));
+    std::this_thread::sleep_for(std::chrono::microseconds(1000));
 }
 
 void display()
@@ -28,16 +28,20 @@ void display()
 
 void reshape(GLint width, GLint height)
 {
-    engine.window->set_height(height);
-    engine.window->set_width(width);
-
+    if (!engine.window->is_resizing())
+        return;
+    if (!engine.window->is_fullscreen()) {
+        engine.window->set_height(height);
+        engine.window->set_width(width);
+        std::cout << "window size : " << width << " , " << height << std::endl;
+    }
     glViewport(0, 0, width, height);
 }
 
 
 void keyboard_pressed(unsigned char key, int x, int y)
 {
-
+    
 }
 
 void keyboard_released(unsigned char key, int x, int y)
