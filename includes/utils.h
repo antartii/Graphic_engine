@@ -47,4 +47,12 @@ class Triangle {
         Triangle(Coordinates p1, Coordinates p2, Coordinates p3): p1(p1), p2(p2), p3(p3) {};
 };
 
+class Quad {
+    public :
+        Coordinates p1, p2, p3, p4;
+
+        Quad() {};
+        Quad(Coordinates p1, Coordinates p2, Coordinates p3, Coordinates p4): p1(p1), p2(p2), p3(p3), p4(p4){};
+};
+
 #endif

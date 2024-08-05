@@ -41,10 +41,12 @@ class Engine {
         void draw(Coordinates point, Color color);
         void draw(Line line, Color color);
         void draw(Triangle triangle, Color color);
+        void draw(Quad quad, Color color);
 
         static Coordinates Coordinates_to_vp(Coordinates point);
         static Line line_to_vp(Line line);
         static Triangle triangle_to_vp(Triangle triangle);
+        static Quad quad_to_vp(Quad quad);
 
         static void set_instance(Engine *engine) {instance = engine;};
         static Size get_window_size_callback() {return instance->get_window_size();}

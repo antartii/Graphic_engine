@@ -61,6 +61,19 @@ void Engine::draw(Triangle triangle, Color color)
     glEnd();
 }
 
+void Engine::draw(Quad quad, Color color)
+{
+    Quad vp_quad = Engine::quad_to_vp(quad);
+
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_QUADS);
+    glVertex2d(vp_quad.p1.x, vp_quad.p1.y);
+    glVertex2d(vp_quad.p2.x, vp_quad.p2.y);
+    glVertex2d(vp_quad.p3.x, vp_quad.p3.y);
+    glVertex2d(vp_quad.p4.x, vp_quad.p4.y);
+    glEnd();
+}
+
 void Engine::update(int fps, int value)
 {
     if (game_manager != nullptr)
@@ -113,4 +126,15 @@ Triangle Engine::triangle_to_vp(Triangle triangle)
     vp_triangle.p2 = Engine::Coordinates_to_vp(triangle.p2);
     vp_triangle.p3 = Engine::Coordinates_to_vp(triangle.p3);
     return vp_triangle;
+}
+
+Quad Engine::quad_to_vp(Quad quad)
+{
+    Quad vp_quad;
+
+    vp_quad.p1 = Engine::Coordinates_to_vp(quad.p1);
+    vp_quad.p2 = Engine::Coordinates_to_vp(quad.p2);
+    vp_quad.p3 = Engine::Coordinates_to_vp(quad.p3);
+    vp_quad.p4 = Engine::Coordinates_to_vp(quad.p4);
+    return vp_quad;
 }

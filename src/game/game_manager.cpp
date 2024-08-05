@@ -15,6 +15,7 @@ void Game_manager::draw(void)
     /*
     engine->draw(Coordinates(10, 10), Color::red()); // DRAW A POINT
     engine->draw(Line(Coordinates(20, 20), Coordinates(100, 0)), Color::red()); // DRAW LINE
+    engine->draw(Triangle(Coordinates(20, 20), Coordinates(120, 20), Coordinates(60, 120)), Color::red());// DRAW TRIANGLE
     */
-   engine->draw(Triangle(Coordinates(20, 20), Coordinates(120, 20), Coordinates(60, 120)), Color::red());// DRAW TRIANGLE
+    engine->draw(Quad(Coordinates(50, 0), Coordinates(100, 50), Coordinates(50, 100), Coordinates(0, 50)), Color::red()); // DRAW SQUARE
 }
