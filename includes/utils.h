@@ -39,4 +39,12 @@ class Line {
         Line(Coordinates p1, Coordinates p2): p1(p1), p2(p2) {};
 };
 
+class Triangle {
+    public :
+        Coordinates p1, p2, p3;
+
+        Triangle() {};
+        Triangle(Coordinates p1, Coordinates p2, Coordinates p3): p1(p1), p2(p2), p3(p3) {};
+};
+
 #endif

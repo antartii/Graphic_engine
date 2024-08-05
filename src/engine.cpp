@@ -49,6 +49,18 @@ void Engine::draw(Line line, Color color)
     glEnd();
 }
 
+void Engine::draw(Triangle triangle, Color color)
+{
+    Triangle vp_triangle = Engine::triangle_to_vp(triangle);
+
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_TRIANGLES);
+    glVertex2d(vp_triangle.p1.x, vp_triangle.p1.y);
+    glVertex2d(vp_triangle.p2.x, vp_triangle.p2.y);
+    glVertex2d(vp_triangle.p3.x, vp_triangle.p3.y);
+    glEnd();
+}
+
 void Engine::update(int fps, int value)
 {
     if (game_manager != nullptr)
@@ -91,4 +103,14 @@ Line Engine::line_to_vp(Line line)
     vp_line.p1 = Engine::Coordinates_to_vp(line.p1);
     vp_line.p2 = Engine::Coordinates_to_vp(line.p2);
     return vp_line;
+}
+
+Triangle Engine::triangle_to_vp(Triangle triangle)
+{
+    Triangle vp_triangle;
+
+    vp_triangle.p1 = Engine::Coordinates_to_vp(triangle.p1);
+    vp_triangle.p2 = Engine::Coordinates_to_vp(triangle.p2);
+    vp_triangle.p3 = Engine::Coordinates_to_vp(triangle.p3);
+    return vp_triangle;
 }
