@@ -1,6 +1,20 @@
 #ifndef UTILS
     #define UTILS
 
+class Color {
+    public :
+        float r = 0;
+        float g = 0;
+        float b = 0;
+    
+        Color(){};
+        Color(float r, float g, float b): r(r), g(g), b(b) {}
+        
+        static Color red(){return Color(1, 0, 0);}
+        static Color green(){return Color(0, 1, 0);}
+        static Color blue(){return Color(0, 0, 1);}
+};
+
 class Size {
     public:
         int width = 0;
@@ -21,6 +35,11 @@ class Coordinates {
         Coordinates() {}
         Coordinates(int x, int y): x(x), y(y) {}
         Coordinates(int x, int y, int z): x(x), y(y), z(z) {}
+};
+
+class Line {
+    public :
+        Coordinates points[2] = {Coordinates(0, 0), Coordinates(0, 0)};
 };
 
 #endif

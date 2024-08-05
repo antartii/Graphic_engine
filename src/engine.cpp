@@ -26,15 +26,13 @@ void Engine::start()
     glutMainLoop();
 }
 
-void Engine::draw(Coordinates point)
+void Engine::draw(Coordinates point, Color color)
 {
     Coordinates vp_point = Coordinates_to_vp(point);
 
-    std::cout << "point : " << vp_point.x << ", " << vp_point.y << std::endl;
-
     glPointSize(1.0f);
+    glColor3f(color.r, color.g, color.b);
     glBegin(GL_POINTS);
-    glVertex2f(0.0f, 0.0f);
     glVertex2f(vp_point.x, vp_point.y);
     glEnd();
 }

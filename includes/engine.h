@@ -37,7 +37,7 @@ class Engine {
         void display();
         void reshape(int w, int h);
 
-        void draw(Coordinates point);
+        void draw(Coordinates point, Color color);
 
         Size get_window_size(void) {return window_size;}
         static Coordinates Coordinates_to_vp(Coordinates point);
