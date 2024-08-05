@@ -2,7 +2,9 @@
 
 void Game_manager::init(void)
 {
-    engine->init("retest", Size(300, 300), Coordinates(0, 0));
+    engine->set_window_title("retest");
+    engine->set_window_size(Size(300, 300));
+    engine->set_window_pos(Coordinates(0, 0));
 }
 
 void Game_manager::update(void)

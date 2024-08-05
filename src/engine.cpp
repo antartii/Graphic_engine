@@ -20,11 +20,16 @@ void Engine::add_mod_display_function(void (*mod_display_function)())
     mod_display_functions_count += 1;
 }
 
-void Engine::init(std::string title, Size size, Coordinates position)
+void Engine::add_mod_init_function(void (*mod_init_function)())
 {
-    window_size = size;
-    window_position = position;
-    window_title = title;
+    this->mod_init_functions.push_back(mod_init_function);
+    mod_init_functions_count += 1;
+}
+
+void Engine::init()
+{
+    for (int i = 0; i < mod_init_functions_count; i += 1)
+        mod_init_functions[i]();
 }
 
 void Engine::start()
