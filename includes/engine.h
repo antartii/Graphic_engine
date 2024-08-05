@@ -7,7 +7,6 @@
     #include <thread>
     #include <chrono>
 
-    #include "game_manager.h"
     #include "utils.h"
 
 class Game_manager;
@@ -17,7 +16,6 @@ class Engine {
         int argc = 0;
         char **argv = nullptr;
         unsigned int display_mode = GLUT_DOUBLE | GLUT_RGB;
-        Game_manager *game_manager = nullptr;
         std::string window_title = "window";
         Size window_size;
         Coordinates window_position;
@@ -25,11 +23,18 @@ class Engine {
 
         static Engine *instance;
 
+        // MODS
+        std::vector<void (*)(int, int)> mod_update_functions;
+        int mod_update_functions_count = 0;
+        std::vector<void (*)()> mod_display_functions;
+        int mod_display_functions_count = 0;
+
     public :
         Engine() {};
         Engine(int *argc, char **argv);
 
-        void set_game_manager(Game_manager *game_manager) {this->game_manager = game_manager;}
+        void add_mod_update_function(void (*mod_update_function)(int, int));
+        void add_mod_display_function(void (*mod_display_function)());
         Size get_window_size(void) {return window_size;}
 
         void init(std::string title, Size size, Coordinates position);

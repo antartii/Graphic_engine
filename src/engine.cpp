@@ -8,6 +8,18 @@ Engine::Engine(int *argc, char **argv):
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // BY DEFAULT (do dev want to set it manually ?)
 }
 
+void Engine::add_mod_update_function(void (*mod_update_function)(int, int))
+{
+    this->mod_update_functions.push_back(mod_update_function);
+    mod_update_functions_count += 1;
+}
+
+void Engine::add_mod_display_function(void (*mod_display_function)())
+{
+    this->mod_display_functions.push_back(mod_display_function);
+    mod_display_functions_count += 1;
+}
+
 void Engine::init(std::string title, Size size, Coordinates position)
 {
     window_size = size;
@@ -76,19 +88,17 @@ void Engine::draw(Quad quad, Color color)
 
 void Engine::update(int fps, int value)
 {
-    if (game_manager != nullptr)
-        game_manager->update();
+    for (int i = 0; i < mod_update_functions_count; i += 1)
+        mod_update_functions[i](fps, value);
     glutPostRedisplay();
     glutTimerFunc(600 / fps, Engine::update_callback, 0);
 }
 
 void Engine::display()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    if (game_manager != nullptr)
-        game_manager->draw();
-
+    glClear(GL_COLOR_BUFFER_BIT);    
+    for (int i = 0; i < mod_display_functions_count; i += 1)
+        mod_display_functions[i]();
     glutSwapBuffers();
 }
 
