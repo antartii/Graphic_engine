@@ -40,6 +40,10 @@ class Coordinates {
 class Line {
     public :
         Coordinates points[2] = {Coordinates(0, 0), Coordinates(0, 0)};
+
+        Line(){}
+        Line(Coordinates points[2]);
+        Line(Coordinates starting_point, Coordinates vector);
 };
 
 #endif

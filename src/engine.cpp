@@ -23,6 +23,8 @@ void Engine::start()
     glutReshapeFunc(Engine::reshape_callback);
     glutInitWindowSize(window_size.width, window_size.height);
     glutInitWindowPosition(window_position.x, window_position.y);
+    glPointSize(1.0f);
+
     glutMainLoop();
 }
 
@@ -30,10 +32,20 @@ void Engine::draw(Coordinates point, Color color)
 {
     Coordinates vp_point = Coordinates_to_vp(point);
 
-    glPointSize(1.0f);
     glColor3f(color.r, color.g, color.b);
     glBegin(GL_POINTS);
     glVertex2f(vp_point.x, vp_point.y);
+    glEnd();
+}
+
+void Engine::draw(Line line, Color color)
+{
+    Line vp_line = Engine::line_to_vp(line);
+
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_LINES);
+    for (int i = 0; i < 2; i += 1)
+        glVertex2d(vp_line.points[i].x, vp_line.points[i].y);
     glEnd();
 }
 
@@ -70,4 +82,13 @@ Coordinates Engine::Coordinates_to_vp(Coordinates point)
     vp_point.x = (point.x / (window.width / 2)) - 1;
     vp_point.y = (point.y / (window.height / 2)) - 1;
     return vp_point;
+}
+
+Line Engine::line_to_vp(Line line)
+{
+    Line vp_line;
+
+    for (int i = 0; i < 2; i += 1)
+        vp_line.points[i] = Engine::Coordinates_to_vp(line.points[i]);
+    return vp_line;
 }

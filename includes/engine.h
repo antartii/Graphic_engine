@@ -30,6 +30,7 @@ class Engine {
         Engine(int *argc, char **argv);
 
         void set_game_manager(Game_manager *game_manager) {this->game_manager = game_manager;}
+        Size get_window_size(void) {return window_size;}
 
         void init(std::string title, Size size, Coordinates position);
         void start();
@@ -38,16 +39,18 @@ class Engine {
         void reshape(int w, int h);
 
         void draw(Coordinates point, Color color);
+        void draw(Line line, Color color);
 
-        Size get_window_size(void) {return window_size;}
         static Coordinates Coordinates_to_vp(Coordinates point);
+        static Line line_to_vp(Line line);
 
         static void set_instance(Engine *engine) {instance = engine;};
+        static Size get_window_size_callback() {return instance->get_window_size();}
+        static int get_fps() {return instance->fps;}
+
         static void update_callback(int value) {instance->update(Engine::get_fps(), value);}
         static void display_callback() {instance->display();}
         static void reshape_callback(int w, int h) {instance->reshape(w, h);}
-        static Size get_window_size_callback() {return instance->get_window_size();}
-        static int get_fps() {return instance->fps;}
 };
 
 #endif

@@ -12,5 +12,6 @@ void Game_manager::update(void)
 
 void Game_manager::draw(void)
 {
-    engine->draw(Coordinates(10, 10), Color::red());
+    engine->draw(Coordinates(10, 10), Color::red()); // DRAW A POINT
+    engine->draw(Line(Coordinates(20, 20), Coordinates(100, 0)), Color::red()); // DRAW A LINE
 }
