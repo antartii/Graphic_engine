@@ -47,7 +47,7 @@ void Engine::start()
 
 void Engine::draw(Coordinates point, Color color)
 {
-    Coordinates vp_point = Coordinates_to_vp(point);
+    Coordinates vp_point = coordinates_to_vp(point);
 
     glColor3f(color.r, color.g, color.b);
     glBegin(GL_POINTS);
@@ -91,6 +91,29 @@ void Engine::draw(Quad quad, Color color)
     glEnd();
 }
 
+void Engine::draw(Polygon polygon, Color color)
+{
+    Polygon vp_polygon = Engine::polygon_to_vp(polygon);
+
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_POLYGON);
+    for (int i = 0; i < vp_polygon.points.size(); i += 1)
+        glVertex2d(vp_polygon.points[i].x, vp_polygon.points[i].y);
+    glEnd();
+}
+
+/*void Engine::draw(Circle circle, Color color)
+{
+    Circle vp_circle = Engine::circle_to_vp(circle);
+    std::vector<Coordinates> vp_points = vp_circle.get_points();
+
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_LINE_LOOP);
+    for (int i = 0; i < vp_points.size(); i += 1)
+        glVertex2d(vp_points[i].x, vp_points[i].y);
+    glEnd();
+}*/
+
 void Engine::update(int fps, int value)
 {
     for (int i = 0; i < mod_update_functions_count; i += 1)
@@ -114,7 +137,7 @@ void Engine::reshape(int w, int h)
     glViewport(0, 0, w, h);
 }
 
-Coordinates Engine::Coordinates_to_vp(Coordinates point)
+Coordinates Engine::coordinates_to_vp(Coordinates point)
 {
     Coordinates vp_point(0, 0);
     Size window = Engine::get_window_size_callback();
@@ -128,8 +151,8 @@ Line Engine::line_to_vp(Line line)
 {
     Line vp_line;
 
-    vp_line.p1 = Engine::Coordinates_to_vp(line.p1);
-    vp_line.p2 = Engine::Coordinates_to_vp(line.p2);
+    vp_line.p1 = Engine::coordinates_to_vp(line.p1);
+    vp_line.p2 = Engine::coordinates_to_vp(line.p2);
     return vp_line;
 }
 
@@ -137,9 +160,9 @@ Triangle Engine::triangle_to_vp(Triangle triangle)
 {
     Triangle vp_triangle;
 
-    vp_triangle.p1 = Engine::Coordinates_to_vp(triangle.p1);
-    vp_triangle.p2 = Engine::Coordinates_to_vp(triangle.p2);
-    vp_triangle.p3 = Engine::Coordinates_to_vp(triangle.p3);
+    vp_triangle.p1 = Engine::coordinates_to_vp(triangle.p1);
+    vp_triangle.p2 = Engine::coordinates_to_vp(triangle.p2);
+    vp_triangle.p3 = Engine::coordinates_to_vp(triangle.p3);
     return vp_triangle;
 }
 
@@ -147,9 +170,28 @@ Quad Engine::quad_to_vp(Quad quad)
 {
     Quad vp_quad;
 
-    vp_quad.p1 = Engine::Coordinates_to_vp(quad.p1);
-    vp_quad.p2 = Engine::Coordinates_to_vp(quad.p2);
-    vp_quad.p3 = Engine::Coordinates_to_vp(quad.p3);
-    vp_quad.p4 = Engine::Coordinates_to_vp(quad.p4);
+    vp_quad.p1 = Engine::coordinates_to_vp(quad.p1);
+    vp_quad.p2 = Engine::coordinates_to_vp(quad.p2);
+    vp_quad.p3 = Engine::coordinates_to_vp(quad.p3);
+    vp_quad.p4 = Engine::coordinates_to_vp(quad.p4);
     return vp_quad;
 }
+
+Polygon Engine::polygon_to_vp(Polygon polygon)
+{
+    Polygon vp_polygon;
+
+    for (int i = 0; i < polygon.points.size(); i += 1)
+        vp_polygon.points.push_back(Engine::coordinates_to_vp(polygon.points[i]));
+    return vp_polygon;
+}
+
+/*Circle Engine::circle_to_vp(Circle circle)
+{
+    float vp_radius = 0.5;
+    Coordinates vp_center = coordinates_to_vp(circle.get_center());
+    int segments_count = circle.get_segments_count();
+    Circle vp_circle(vp_center, vp_radius, segments_count);
+
+    return vp_circle;
+}*/

@@ -4,8 +4,7 @@
     #include <GL/freeglut.h>
     #include <iostream>
     #include <vector>
-    #include <thread>
-    #include <chrono>
+    #include <cmath>
 
     #include "utils.h"
 
@@ -55,11 +54,15 @@ class Engine {
         void draw(Line line, Color color);
         void draw(Triangle triangle, Color color);
         void draw(Quad quad, Color color);
+        void draw(Polygon polygon, Color color);
+        //void draw(Circle circle, Color color);
 
-        static Coordinates Coordinates_to_vp(Coordinates point);
+        static Coordinates coordinates_to_vp(Coordinates point);
         static Line line_to_vp(Line line);
         static Triangle triangle_to_vp(Triangle triangle);
         static Quad quad_to_vp(Quad quad);
+        static Polygon polygon_to_vp(Polygon polygon);
+        //static Circle circle_to_vp(Circle circle);
 
         static void set_instance(Engine *engine) {instance = engine;};
         static Size get_window_size_callback() {return instance->get_window_size();}
