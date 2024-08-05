@@ -3,9 +3,7 @@
 
 class Color {
     public :
-        float r = 0;
-        float g = 0;
-        float b = 0;
+        float r, g, b = 0;
     
         Color(){};
         Color(float r, float g, float b): r(r), g(g), b(b) {}
@@ -17,9 +15,7 @@ class Color {
 
 class Size {
     public:
-        int width = 0;
-        int height = 0;
-        int depth = 0;
+        int width, height, depth = 0;
 
         Size() {};
         Size(int width, int height): width(width), height(height) {}
@@ -28,9 +24,7 @@ class Size {
 
 class Coordinates {
     public :
-        float x = 0;
-        float y = 0;
-        float z = 0;
+        float x, y, z = 0;
 
         Coordinates() {}
         Coordinates(int x, int y): x(x), y(y) {}
@@ -39,11 +33,10 @@ class Coordinates {
 
 class Line {
     public :
-        Coordinates points[2] = {Coordinates(0, 0), Coordinates(0, 0)};
+        Coordinates p1, p2;
 
         Line(){}
-        Line(Coordinates points[2]);
-        Line(Coordinates starting_point, Coordinates vector);
+        Line(Coordinates p1, Coordinates p2): p1(p1), p2(p2) {};
 };
 
 #endif

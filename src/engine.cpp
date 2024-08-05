@@ -44,8 +44,8 @@ void Engine::draw(Line line, Color color)
 
     glColor3f(color.r, color.g, color.b);
     glBegin(GL_LINES);
-    for (int i = 0; i < 2; i += 1)
-        glVertex2d(vp_line.points[i].x, vp_line.points[i].y);
+    glVertex2d(vp_line.p1.x, vp_line.p1.y);
+    glVertex2d(vp_line.p2.x, vp_line.p2.y);
     glEnd();
 }
 
@@ -88,7 +88,7 @@ Line Engine::line_to_vp(Line line)
 {
     Line vp_line;
 
-    for (int i = 0; i < 2; i += 1)
-        vp_line.points[i] = Engine::Coordinates_to_vp(line.points[i]);
+    vp_line.p1 = Engine::Coordinates_to_vp(line.p1);
+    vp_line.p2 = Engine::Coordinates_to_vp(line.p2);
     return vp_line;
 }
