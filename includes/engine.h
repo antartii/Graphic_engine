@@ -47,7 +47,10 @@ class Engine {
 
         static void set_instance(Engine *engine) {instance = engine;};
         static int get_fps() {return instance->fps;}
+        static Coordinates coordinates_to_vp(Coordinates point);
+        void draw(Coordinates point, Color color);
 
+        static Size get_window_size_callback() {return instance->get_window_size();}
         static void update_callback(int value) {instance->update(Engine::get_fps(), value);}
         static void display_callback() {instance->display();}
         static void reshape_callback(int w, int h) {instance->reshape(w, h);}

@@ -66,3 +66,23 @@ void Engine::reshape(int w, int h)
     window_size.height = h;
     glViewport(0, 0, w, h);
 }
+
+Coordinates Engine::coordinates_to_vp(Coordinates point)
+{
+    Coordinates vp_point(0, 0);
+    Size window = get_window_size_callback();
+
+    vp_point.x = (point.x / (window.width / 2)) - 1;
+    vp_point.y = (point.y / (window.height / 2)) - 1;
+    return vp_point;
+}
+
+void Engine::draw(Coordinates point, Color color)
+{
+    Coordinates vp_point = coordinates_to_vp(point);
+
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_POINTS);
+    glVertex2f(vp_point.x, vp_point.y);
+    glEnd();
+}

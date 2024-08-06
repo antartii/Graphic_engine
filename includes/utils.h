@@ -33,7 +33,6 @@ class Coordinates {
         Coordinates(int x, int y): x(x), y(y) {}
         Coordinates(int x, int y, int z): x(x), y(y), z(z) {}
 
-        static Coordinates coordinates_to_vp(Coordinates point, Size window);
         static void draw(Coordinates point, Color color, Size window);
 };
 

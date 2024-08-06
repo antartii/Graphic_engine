@@ -3,7 +3,7 @@
 #include "game_manager.h"
 
 Engine engine;
-Engine *Engine::instance = nullptr;
+Engine *Engine::instance = &engine;
 
 // MODS GLOBAL VAR
 Game_manager game_manager;
@@ -13,7 +13,6 @@ Game_manager *Game_manager::instance = nullptr;
 int main(int argc, char **argv, char **env)
 {
     engine = Engine(&argc, argv);
-    Engine::set_instance(&engine);
 
     // MODS
     game_manager = Game_manager(&engine);
