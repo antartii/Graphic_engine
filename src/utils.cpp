@@ -1,18 +1,20 @@
 #include "utils.h"
 
-/*Circle::Circle(Coordinates center, float radius, int segments_count)
+Coordinates Coordinates::coordinates_to_vp(Coordinates point, Size window)
 {
-    float angle = 0;
-    Coordinates point;
+    Coordinates vp_point(0, 0);
 
-    this->center = center;
-    this->radius = radius;
-    this->segments_count = segments_count;
+    vp_point.x = (point.x / (window.width / 2)) - 1;
+    vp_point.y = (point.y / (window.height / 2)) - 1;
+    return vp_point;
+}
 
-    for (int i = 0; i < segments_count; i += 1) {
-        angle = 2.0f * M_PI * i / segments_count;
-        point.x = radius * cos(angle) + center.y;
-        point.y = radius * sin(angle) + center.x;
-        points.push_back(point);
-    }
-}*/
+void Coordinates::draw(Coordinates point, Color color, Size window)
+{
+    Coordinates vp_point = coordinates_to_vp(point, window);
+
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_POINTS);
+    glVertex2f(vp_point.x, vp_point.y);
+    glEnd();
+}

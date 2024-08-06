@@ -2,6 +2,7 @@
 #define GAME_MANAGER
 
 #include "engine.h"
+#include "shapes_2D.h"
 
 class Engine;
 

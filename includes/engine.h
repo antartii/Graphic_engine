@@ -4,9 +4,9 @@
     #include <GL/freeglut.h>
     #include <iostream>
     #include <vector>
-    #include <cmath>
 
     #include "utils.h"
+    #include "shapes_2D.h"
 
 class Game_manager;
 
@@ -49,20 +49,6 @@ class Engine {
         void update(int fps, int value);
         void display();
         void reshape(int w, int h);
-
-        void draw(Coordinates point, Color color);
-        void draw(Line line, Color color);
-        void draw(Triangle triangle, Color color);
-        void draw(Quad quad, Color color);
-        void draw(Polygon polygon, Color color);
-        //void draw(Circle circle, Color color);
-
-        static Coordinates coordinates_to_vp(Coordinates point);
-        static Line line_to_vp(Line line);
-        static Triangle triangle_to_vp(Triangle triangle);
-        static Quad quad_to_vp(Quad quad);
-        static Polygon polygon_to_vp(Polygon polygon);
-        //static Circle circle_to_vp(Circle circle);
 
         static void set_instance(Engine *engine) {instance = engine;};
         static Size get_window_size_callback() {return instance->get_window_size();}

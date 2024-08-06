@@ -3,6 +3,7 @@
 
     #include <vector>
     #include <cmath>
+    #include <GL/freeglut.h>
 
 class Color {
     public :
@@ -32,38 +33,9 @@ class Coordinates {
         Coordinates() {}
         Coordinates(int x, int y): x(x), y(y) {}
         Coordinates(int x, int y, int z): x(x), y(y), z(z) {}
-};
 
-class Line {
-    public :
-        Coordinates p1, p2;
-
-        Line(){}
-        Line(Coordinates p1, Coordinates p2): p1(p1), p2(p2) {};
-};
-
-class Triangle {
-    public :
-        Coordinates p1, p2, p3;
-
-        Triangle() {};
-        Triangle(Coordinates p1, Coordinates p2, Coordinates p3): p1(p1), p2(p2), p3(p3) {};
-};
-
-class Quad {
-    public :
-        Coordinates p1, p2, p3, p4;
-
-        Quad() {};
-        Quad(Coordinates p1, Coordinates p2, Coordinates p3, Coordinates p4): p1(p1), p2(p2), p3(p3), p4(p4){};
-};
-
-class Polygon {
-    public :
-        std::vector<Coordinates> points;
-
-        Polygon() {};
-        Polygon(std::vector<Coordinates> points): points(points) {}
+        static Coordinates coordinates_to_vp(Coordinates point, Size window);
+        static void draw(Coordinates point, Color color, Size window);
 };
 
 /*class Circle {
