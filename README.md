@@ -1,38 +1,46 @@
-# Anta's Graphic Engine
+# Anta’s graphic engine
 
-Anta's Graphic Engine is an open-source project designed to assist developers in creating software with a graphical interface.
-The primary goal of this project is to provide a highly customizable and easy-to-use tool for various types of graphical applications.
+*This program is coded, compiled and released for `Fedora release 38` for the time being. We currently don’t know if the program is compatible with other OS and we do not offer support for other OS than the `Fedora release 38` . Please be aware while using this program on other OS, it could end up with unexpected behavior.*
 
-Our team currently follows 3 motto :
-- Always be open to learning new things and trying new stuff
-- Pushing ourselves to our limits (could be by redoing an entire set of our code)
-- Trying our best to be understandable by everyone (by making detailed documentation, tutorials and helping each other)
+notes : here is the point we need help :
 
-## Features
+**At the moment :**
 
-The engine have the following components:
+**Every time :**
 
-- C++ Core Class: Serves as the engine's core, awaiting plugins to render graphics.
-- Basic Classes: Includes fundamental classes such as Size and  Coordinates to manage spatial concepts.
-- Main Program (main.cpp): Launches the program and allows you to set up your plugins.
+- Optimizing (even micro optimizations are great !)
+- Improving readability (functions names, variables names, etc…)
+- Code architecture (file architecture, class & function dependencies)
+- Documentation (tutorial, fix grammatical & orthographical errors, translating our documentation)
 
-## Plugins
+Anta’s graphic engine is a set of tools originally created for make easier the creation of software that needs a visual user interface, while keeping an open-source and easy to modify program.
 
-Currently there are two maintained plugins:
+The developpement team of the project follows 3 rules :
 
-- **Shapes2D**
-    Adds support for 2D shapes including lines, triangles, quads, and polygons shapes.
-- **Game**
-    Simulates basic game engine functions such as initialization and updates.
-    Includes a game manager for handling game logic.
+- Keeping everything clear, easy to read and open to ideas
+- Optimizing the more that we can think of (less space used, lower CPU/GPU usage, organizing functions and datas)
+- Always improving (by trying new ways of doing things, doing things even if it’s hard, etc…)
 
-## Contributing
+# Documentation
 
-We would be pleased to have you contributing ! We are currently a team of 1 dev on the project, and the team could need a little help on many things :
-    - An help on optimizing our code to not end up doing spaghetti code (oh no we don't want that !)
-    - An help for english grammatical & wordings mistakes (Sorry the current dev is french and try his best !)
-    - Ideas on interesting features ! (Anything will do !)
+[Documentation](Documentation/Documentation.md)
 
-## Team
+[Tutorial](Documentation/Tutorial.md)
 
-    Anta: Software development student, maintaining the project and writing documentation.
+# Versions
+
+*0.1.1*
+
+The current version is in pre-alpha meaning we are currently developping features that might not be finished, and the program may encounters bugs.
+
+If you are encountering bugs, want to add/modify features or want to help us improve our code let us know at [fireslidefr@gmail.com](mailto:fireslidefr@gmail.com) 
+
+### 0.1.0 (initial version)
+
+initial version of the graphic engine, including a Shape_2D and Game plugin.
+
+# Team
+
+### Devs
+
+**Anta** - Student in software engineering - [https://antarti.fr](https://antarti.fr)
