@@ -39,16 +39,6 @@ Shapes2D::Polygon Shapes2D::polygon_to_vp(Polygon polygon, Size window)
     return vp_polygon;
 }
 
-/*Circle Engine::circle_to_vp(Circle circle)
-{
-    float vp_radius = 0.5;
-    Coordinates vp_center = coordinates_to_vp(circle.get_center());
-    int segments_count = circle.get_segments_count();
-    Circle vp_circle(vp_center, vp_radius, segments_count);
-
-    return vp_circle;
-}*/
-
 void Shapes2D::draw(Line line, Color color, Size window)
 {
     Line vp_line = Shapes2D::line_to_vp(line, window);
@@ -96,31 +86,17 @@ void Shapes2D::draw(Polygon polygon, Color color, Size window)
     glEnd();
 }
 
-/*void Shapes2D::draw(Circle circle, Color color)
+Shapes2D::Polygon Shapes2D::Polygon::create_circle(Coordinates center, float radius, int segments_count)
 {
-    Circle vp_circle = Shapes2D::circle_to_vp(circle);
-    std::vector<Coordinates> vp_points = vp_circle.get_points();
-
-    glColor3f(color.r, color.g, color.b);
-    glBegin(GL_LINE_LOOP);
-    for (int i = 0; i < vp_points.size(); i += 1)
-        glVertex2d(vp_points[i].x, vp_points[i].y);
-    glEnd();
-}*/
-
-/*Circle::Circle(Coordinates center, float radius, int segments_count)
-{
+    std::vector<Coordinates> circle_points;
+    Coordinates temp_point;
     float angle = 0;
-    Coordinates point;
-
-    this->center = center;
-    this->radius = radius;
-    this->segments_count = segments_count;
 
     for (int i = 0; i < segments_count; i += 1) {
         angle = 2.0f * M_PI * i / segments_count;
-        point.x = radius * cos(angle) + center.y;
-        point.y = radius * sin(angle) + center.x;
-        points.push_back(point);
+        temp_point.x = radius * cos(angle) + center.x;
+        temp_point.y = radius * sin(angle) + center.y;
+        circle_points.push_back(temp_point);
     }
-}*/
+    return Polygon(circle_points);
+}

@@ -22,7 +22,6 @@ class Engine {
 
         static Engine *instance;
 
-        // MODS
         std::vector<void (*)()> mod_init_functions;
         int mod_init_functions_count = 0;
         std::vector<void (*)(int, int)> mod_update_functions;
@@ -34,7 +33,6 @@ class Engine {
         Engine() {};
         Engine(int *argc, char **argv);
 
-        // MODS
         void add_mod_update_function(void (*mod_update_function)(int, int));
         void add_mod_display_function(void (*mod_display_function)());
         void add_mod_init_function(void (*add_init_display_function)());

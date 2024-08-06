@@ -2,13 +2,13 @@
 #include "engine.h"
 #include "game_manager.h"
 
-// GLOBAL
 Engine engine;
 Engine *Engine::instance = nullptr;
 
-// MODS GLOBAL
+// MODS GLOBAL VAR
 Game_manager game_manager;
 Game_manager *Game_manager::instance = nullptr;
+// END MODS GLOBAL VAR
 
 int main(int argc, char **argv, char **env)
 {
@@ -21,8 +21,8 @@ int main(int argc, char **argv, char **env)
     engine.add_mod_update_function(Game_manager::update_callback);
     engine.add_mod_display_function(Game_manager::draw_callback);
     engine.add_mod_init_function(Game_manager::init_callback);
+    // END MOD
 
-    // STARTING
     engine.start();
     return 0;
 }

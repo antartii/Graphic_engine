@@ -54,6 +54,8 @@ class Shapes2D::Polygon {
 
         Polygon() {};
         Polygon(std::vector<Coordinates> points): points(points) {}
+
+        static Polygon create_circle(Coordinates center, float radius, int segments_count);
 };
 
 #endif
