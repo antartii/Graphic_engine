@@ -4,7 +4,6 @@ Engine::Engine(int *argc, char **argv):
     argc(*argc), argv(argv)
 {
     glutInit(argc, argv);
-
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // BY DEFAULT (do dev want to set it manually ?)
 }
 

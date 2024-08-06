@@ -2,7 +2,6 @@
     #define UTILS
 
     #include <vector>
-    #include <cmath>
     #include <GL/freeglut.h>
 
 class Color {
@@ -37,22 +36,5 @@ class Coordinates {
         static Coordinates coordinates_to_vp(Coordinates point, Size window);
         static void draw(Coordinates point, Color color, Size window);
 };
-
-/*class Circle {
-    private :
-        Coordinates center;
-        float radius;
-        int segments_count;
-        std::vector<Coordinates> points;
-
-    public :
-        Circle(){}
-        Circle(Coordinates center, float radius, int segments_count);
-
-        float get_radius(void) {return radius;}
-        int get_segments_count(void) {return segments_count;}
-        Coordinates get_center(void) {return center;}
-        std::vector<Coordinates> get_points(void) {return points;}
-};*/
 
 #endif

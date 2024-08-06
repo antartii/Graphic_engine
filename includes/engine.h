@@ -6,9 +6,6 @@
     #include <vector>
 
     #include "utils.h"
-    #include "shapes_2D.h"
-
-class Game_manager;
 
 class Engine {
     private :
@@ -49,7 +46,6 @@ class Engine {
         void reshape(int w, int h);
 
         static void set_instance(Engine *engine) {instance = engine;};
-        static Size get_window_size_callback() {return instance->get_window_size();}
         static int get_fps() {return instance->fps;}
 
         static void update_callback(int value) {instance->update(Engine::get_fps(), value);}

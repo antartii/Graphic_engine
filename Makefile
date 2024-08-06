@@ -1,7 +1,7 @@
 CC = g++
 AR = ar rcs
 
-TARGET = program
+TARGET = anta_graphic_engine
 TARGET_DEBUG = $(TARGET)_debug
 CFLAGS_INCLUDES = $(addprefix -I, $(shell find $(INCLUDE_DIR) -type d)) \
     $(foreach dep, $(DEPENDENCIES_PATH), $(addprefix -I, $(shell find $(dep)/includes -type d)))
