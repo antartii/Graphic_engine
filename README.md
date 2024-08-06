@@ -29,13 +29,13 @@ The developpement team of the project follows 3 rules :
 
 # Versions
 
-*0.1.1*
+*0.0.1*
 
 The current version is in pre-alpha meaning we are currently developping features that might not be finished, and the program may encounters bugs.
 
 If you are encountering bugs, want to add/modify features or want to help us improve our code let us know at [fireslidefr@gmail.com](mailto:fireslidefr@gmail.com) 
 
-### 0.1.0 (initial version)
+### 0.0.1 (initial version)
 
 initial version of the graphic engine, including a Shape_2D and Game plugin.
 
