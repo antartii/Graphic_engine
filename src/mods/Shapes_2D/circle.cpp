@@ -8,15 +8,6 @@ Circle::Circle(Coordinates center, float radius)
     compute_vp();
 }
 
-void Circle::draw(Circle circle, Color color)
-{
-    glColor3f(color.r, color.g, color.b);
-    glBegin(GL_POLYGON);
-    for (int i = 0; i < circle.get_points_count(); i += 1)
-        glVertex2d(circle.get_vp_point(i).x, circle.get_vp_point(i).y);
-    glEnd();
-}
-
 std::vector<Coordinates> Circle::compute_points(Coordinates center, float radius)
 {
     std::vector<Coordinates> points;

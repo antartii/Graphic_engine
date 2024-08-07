@@ -23,12 +23,3 @@ void Quad::compute_vp(void)
     for (int i = 0; i < 4; i += 1)
         vp_points[i] = Engine::coordinates_to_vp(points[i]);
 }
-
-void Quad::draw(Quad quad, Color color)
-{
-    glColor3f(color.r, color.g, color.b);
-    glBegin(GL_QUADS);
-    for (int i = 0; i < 4; i += 1)
-        glVertex2d(quad.get_vp_point(i).x, quad.get_vp_point(i).y);
-    glEnd();
-}

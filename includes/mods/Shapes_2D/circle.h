@@ -30,7 +30,6 @@ class Circle {
         void set_center(Coordinates center);
         void compute_vp(void);
 
-        static void draw(Circle polygon, Color color);
         static std::vector<Coordinates> compute_points(Coordinates center, float radius);
 };
 

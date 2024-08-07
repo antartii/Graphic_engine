@@ -67,3 +67,48 @@ void Shapes_2D::compute_vp(void)
     for (int i = 0; i < polygons_count; i += 1) instance->polygons[i].compute_vp();
     for (int i = 0; i < circles_count; i += 1) instance->circles[i].compute_vp();
 }
+
+void Shapes_2D::draw(Circle circle, Color color)
+{
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_POLYGON);
+    for (int i = 0; i < circle.get_points_count(); i += 1)
+        glVertex2d(circle.get_vp_point(i).x, circle.get_vp_point(i).y);
+    glEnd();
+}
+
+void Shapes_2D::draw(Line line, Color color)
+{
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_LINES);
+    for (int i = 0; i < 2; i += 1)
+        glVertex2d(line.get_vp_point(i).x, line.get_vp_point(i).y);
+    glEnd();
+}
+
+void Shapes_2D::draw(Polygon polygon, Color color)
+{
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_POLYGON);
+    for (int i = 0; i < polygon.get_points_count(); i += 1)
+        glVertex2d(polygon.get_vp_point(i).x, polygon.get_vp_point(i).y);
+    glEnd();
+}
+
+void Shapes_2D::draw(Quad quad, Color color)
+{
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_QUADS);
+    for (int i = 0; i < 4; i += 1)
+        glVertex2d(quad.get_vp_point(i).x, quad.get_vp_point(i).y);
+    glEnd();
+}
+
+void Shapes_2D::draw(Triangle triangle, Color color)
+{
+    glColor3f(color.r, color.g, color.b);
+    glBegin(GL_TRIANGLES);
+    for (int i = 0; i < 3; i += 1)
+        glVertex2d(triangle.get_vp_point(i).x, triangle.get_vp_point(i).y);
+    glEnd();
+}

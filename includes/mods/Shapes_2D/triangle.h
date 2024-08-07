@@ -16,8 +16,6 @@ class Triangle {
         Coordinates get_vp_point(unsigned int index) {return (index < 3 ? vp_points[index] : Coordinates(0, 0));}
         void set_point(unsigned int index, Coordinates point);
         void compute_vp(void);
-
-        static void draw(Triangle triangle, Color color);
 };
 
 #endif

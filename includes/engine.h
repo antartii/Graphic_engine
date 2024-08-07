@@ -38,9 +38,9 @@ class Engine {
         void add_mod_reshape_function(void (*add_reshape_function)());
 
         Size get_window_size(void) {return window_size;}
-        void set_window_title(std::string title) {window_title = title;}
-        void set_window_size(Size size) {window_size = size;}
-        void set_window_pos(Coordinates pos) {window_position = pos;}
+        void set_window_title(std::string title);
+        void set_window_size(Size size);
+        void set_window_pos(Coordinates pos);
 
         void init();
         void start();

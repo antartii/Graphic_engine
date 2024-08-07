@@ -22,15 +22,6 @@ void Polygon::add_point(Coordinates point)
     vp_points.push_back(Engine::coordinates_to_vp(point));
 }
 
-void Polygon::draw(Polygon polygon, Color color)
-{
-    glColor3f(color.r, color.g, color.b);
-    glBegin(GL_POLYGON);
-    for (int i = 0; i < polygon.get_points_count(); i += 1)
-        glVertex2d(polygon.get_vp_point(i).x, polygon.get_vp_point(i).y);
-    glEnd();
-}
-
 void Polygon::compute_vp(void)
 {
     vp_points.clear();

@@ -36,8 +36,12 @@ class Shapes_2D
         static Triangle *create_triangle(Triangle triangle);
         static Polygon *create_polygon(Polygon polygon);
         static Circle *create_circle(Circle circle);
-
         static void delete_shape(unsigned int index, TYPES types);
+        static void draw(Line line, Color color);
+        static void draw(Triangle triangle, Color color);
+        static void draw(Polygon polygon, Color color);
+        static void draw(Quad quad, Color color);
+        static void draw(Circle circle, Color color);
 
         static void compute_vp(void);
 

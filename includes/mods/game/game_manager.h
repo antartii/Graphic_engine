@@ -13,8 +13,9 @@ class Game_manager {
 
         // TEST
         Circle *test;
+        Color red = Color(1, 0, 0);
         // END OF TEST
-        
+
     public:
         Game_manager() {};
         Game_manager(Engine *engine) : engine(engine) {};

@@ -21,12 +21,3 @@ void Line::compute_vp(void)
     for (int i = 0; i < 2; i += 1)
         vp_points[i] = Engine::coordinates_to_vp(points[i]);
 }
-
-void Line::draw(Line line, Color color)
-{
-    glColor3f(color.r, color.g, color.b);
-    glBegin(GL_LINES);
-    for (int i = 0; i < 2; i += 1)
-        glVertex2d(line.get_vp_point(i).x, line.get_vp_point(i).y);
-    glEnd();
-}

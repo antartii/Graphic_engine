@@ -31,6 +31,24 @@ void Engine::add_mod_reshape_function(void (*mod_reshape_function)())
     mod_reshape_functions_count += 1;
 }
 
+void Engine::set_window_title(std::string title)
+{
+    glutSetWindowTitle(title.c_str());
+    window_title = title;
+}
+
+void Engine::set_window_size(Size size)
+{
+    glutReshapeWindow(size.width, size.height);
+    window_size = size;
+}
+
+void Engine::set_window_pos(Coordinates pos)
+{
+    glutPositionWindow(pos.x, pos.y);
+    window_position = pos;
+}
+
 void Engine::init()
 {
     for (int i = 0; i < mod_init_functions_count; i += 1)
