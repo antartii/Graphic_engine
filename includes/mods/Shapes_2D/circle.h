@@ -26,9 +26,9 @@ class Circle {
         Coordinates get_point(unsigned int index) {return (index < points_count ? points[index] : Coordinates(0, 0));}
         Coordinates get_vp_point(unsigned int index) {return (index < points_count ? vp_points[index] : Coordinates(0, 0));}
         int get_points_count(void) {return points_count;}
-
         void set_radius(float radius);
         void set_center(Coordinates center);
+        void compute_vp(void);
 
         static void draw(Circle polygon, Color color);
         static std::vector<Coordinates> compute_points(Coordinates center, float radius);

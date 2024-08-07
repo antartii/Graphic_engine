@@ -41,6 +41,7 @@ void Engine::start()
     glutInitWindowPosition(window_position.x, window_position.y);
     glPointSize(1.0f);
 
+    init();
     glutMainLoop();
 }
 

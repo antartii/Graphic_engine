@@ -20,6 +20,7 @@ class Polygon {
         void set_point(unsigned int index, Coordinates point);
         int get_points_count(void) {return points_count;}
         void add_point(Coordinates point);
+        void compute_vp(void);
 
         static void draw(Polygon polygon, Color color);
 };

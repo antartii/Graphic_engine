@@ -7,7 +7,10 @@ Engine *Engine::instance = &engine;
 
 // MODS GLOBAL VAR
 Game_manager game_manager;
-Game_manager *Game_manager::instance = nullptr;
+Game_manager *Game_manager::instance = &game_manager;
+
+Shapes_2D shapes_2D;
+Shapes_2D *Shapes_2D::instance = &shapes_2D;
 // END MODS GLOBAL VAR
 
 int main(int argc, char **argv, char **env)
@@ -16,7 +19,6 @@ int main(int argc, char **argv, char **env)
 
     // MODS
     game_manager = Game_manager(&engine);
-    Game_manager::set_instance(&game_manager);
     engine.add_mod_update_function(Game_manager::update_callback);
     engine.add_mod_display_function(Game_manager::draw_callback);
     engine.add_mod_init_function(Game_manager::init_callback);

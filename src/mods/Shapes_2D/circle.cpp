@@ -2,10 +2,10 @@
 
 Circle::Circle(Coordinates center, float radius)
 {
+    points.clear();
     points = Circle::compute_points(center, radius);
     points_count = points.size();
-    for (int i = 0; i < points_count; i += 1)
-        vp_points.push_back(Engine::coordinates_to_vp(points[i]));
+    compute_vp();
 }
 
 void Circle::draw(Circle circle, Color color)
@@ -26,7 +26,6 @@ std::vector<Coordinates> Circle::compute_points(Coordinates center, float radius
 
     if (segments_count < 3)
         segments_count = 3;
-
     for (int i = 0; i < segments_count; i += 1) {
         angle = 2.0f * M_PI * i / segments_count;
         temp_point.x = radius * cos(angle) + center.x;
@@ -49,6 +48,14 @@ void Circle::set_center(Coordinates center)
     
     points = Circle::compute_points(center, radius);
     points_count = points.size();
+    for (int i = 0; i < points_count; i += 1)
+        vp_points.push_back(Engine::coordinates_to_vp(points[i]));
+}
+
+void Circle::compute_vp()
+{
+    vp_points.clear();
+
     for (int i = 0; i < points_count; i += 1)
         vp_points.push_back(Engine::coordinates_to_vp(points[i]));
 }

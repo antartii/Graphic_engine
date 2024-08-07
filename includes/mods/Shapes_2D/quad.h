@@ -16,6 +16,7 @@ class Quad {
         Coordinates get_point(unsigned int index) {return (index < 4 ? points[index] : Coordinates(0, 0));}
         Coordinates get_vp_point(unsigned int index) {return (index < 4 ? vp_points[index] : Coordinates(0, 0));}
         void set_point(unsigned int index, Coordinates point);
+        void compute_vp(void);
 
         static void draw(Quad quad, Color color);
 };

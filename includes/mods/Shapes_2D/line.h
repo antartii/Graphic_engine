@@ -12,9 +12,11 @@ class Line {
     public :
         Line(){}
         Line(Coordinates p1, Coordinates p2);
+
         Coordinates get_point(unsigned int index) {return (index < 2 ? points[index] : Coordinates(0, 0));}
         Coordinates get_vp_point(unsigned int index) {return (index < 2 ? vp_points[index] : Coordinates(0, 0));}
         void set_point(unsigned int index, Coordinates point);
+        void compute_vp(void);
 
         static void draw(Line line, Color color);
 };
