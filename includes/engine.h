@@ -25,6 +25,8 @@ class Engine {
         int mod_update_functions_count = 0;
         std::vector<void (*)()> mod_display_functions;
         int mod_display_functions_count = 0;
+        std::vector<void (*)()> mod_reshape_functions;
+        int mod_reshape_functions_count = 0;
 
     public :
         Engine() {};
@@ -32,7 +34,8 @@ class Engine {
 
         void add_mod_update_function(void (*mod_update_function)(int, int));
         void add_mod_display_function(void (*mod_display_function)());
-        void add_mod_init_function(void (*add_init_display_function)());
+        void add_mod_init_function(void (*add_init_function)());
+        void add_mod_reshape_function(void (*add_reshape_function)());
 
         Size get_window_size(void) {return window_size;}
         void set_window_title(std::string title) {window_title = title;}

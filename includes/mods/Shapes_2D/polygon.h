@@ -9,7 +9,7 @@ class Polygon {
     private :
         std::vector<Coordinates> points;
         std::vector<Coordinates> vp_points;
-        int points_count = 0;
+        unsigned int points_count = 0;
 
     public :
         Polygon() {};

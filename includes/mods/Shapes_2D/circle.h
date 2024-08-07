@@ -15,7 +15,7 @@ class Circle {
         float radius = 0;
         Coordinates center;
 
-        int points_count = 0;
+        unsigned int points_count = 0;
         std::vector<Coordinates> points;
         std::vector<Coordinates> vp_points;
 

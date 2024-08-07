@@ -34,6 +34,6 @@ void Polygon::draw(Polygon polygon, Color color)
 void Polygon::compute_vp(void)
 {
     vp_points.clear();
-    for (int i = 0; i < points_count; i += 1)
+    for (unsigned int i = 0; i < points_count; i += 1)
         this->vp_points.push_back(Engine::coordinates_to_vp(points[i]));
 }

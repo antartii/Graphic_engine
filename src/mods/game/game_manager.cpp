@@ -5,6 +5,8 @@ void Game_manager::init(void)
     engine->set_window_title("retest");
     engine->set_window_size(Size(300, 300));
     engine->set_window_pos(Coordinates(0, 0));
+
+    test = Shapes_2D::create_circle(Circle(Coordinates(300, 300), 200));
 }
 
 void Game_manager::update(void)
@@ -20,5 +22,5 @@ void Game_manager::draw(void)
     //Triangle::draw(test, thing);// DRAW TRIANGLE
     //Quad::draw(Quad(Coordinates(0, 0), Coordinates(100, 0), Coordinates(100, 100), Coordinates(0, 100)), Color::red()); // DRAW SQUARE
     //Polygon::draw(Polygon(std::vector<Coordinates> {Coordinates(120, 120), Coordinates(70, 130), Coordinates(80, 140), Coordinates(20, 64), Coordinates(897, 65), Coordinates(45, 30), Coordinates(200, 100)}), Color::red()); // DRAW A POLYGON
-    Polygon::draw(Polygon::create_circle(Coordinates(300, 300), 200, 100), Color::red());
+    Circle::draw(*test, Color::red());
 }

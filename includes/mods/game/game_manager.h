@@ -8,13 +8,13 @@ class Engine;
 
 class Game_manager {
     private:
+        static Game_manager *instance;
         Engine *engine;
 
-        static Game_manager *instance;
-
-        Triangle test = Triangle(Coordinates(20, 20), Coordinates(120, 20), Coordinates(60, 120));
-        Color thing = Color::red();
-
+        // TEST
+        Circle *test;
+        // END OF TEST
+        
     public:
         Game_manager() {};
         Game_manager(Engine *engine) : engine(engine) {};

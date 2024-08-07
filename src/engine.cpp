@@ -25,6 +25,12 @@ void Engine::add_mod_init_function(void (*mod_init_function)())
     mod_init_functions_count += 1;
 }
 
+void Engine::add_mod_reshape_function(void (*mod_reshape_function)())
+{
+    this->mod_reshape_functions.push_back(mod_reshape_function);
+    mod_reshape_functions_count += 1;
+}
+
 void Engine::init()
 {
     for (int i = 0; i < mod_init_functions_count; i += 1)
@@ -65,6 +71,8 @@ void Engine::reshape(int w, int h)
 {
     window_size.width = w;
     window_size.height = h;
+    for (int i = 0; i < mod_reshape_functions_count; i += 1)
+        mod_reshape_functions[i]();
     glViewport(0, 0, w, h);
 }
 

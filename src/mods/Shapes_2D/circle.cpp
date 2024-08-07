@@ -39,7 +39,7 @@ void Circle::set_radius(float radius)
 {
     points = Circle::compute_points(center, radius);
     points_count = points.size();
-    for (int i = 0; i < points_count; i += 1)
+    for (unsigned int i = 0; i < points_count; i += 1)
         vp_points.push_back(Engine::coordinates_to_vp(points[i]));
 }
 
@@ -48,7 +48,7 @@ void Circle::set_center(Coordinates center)
     
     points = Circle::compute_points(center, radius);
     points_count = points.size();
-    for (int i = 0; i < points_count; i += 1)
+    for (unsigned int i = 0; i < points_count; i += 1)
         vp_points.push_back(Engine::coordinates_to_vp(points[i]));
 }
 
@@ -56,6 +56,6 @@ void Circle::compute_vp()
 {
     vp_points.clear();
 
-    for (int i = 0; i < points_count; i += 1)
+    for (unsigned int i = 0; i < points_count; i += 1)
         vp_points.push_back(Engine::coordinates_to_vp(points[i]));
 }

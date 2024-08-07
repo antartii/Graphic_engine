@@ -30,6 +30,29 @@ Circle *Shapes_2D::create_circle(Circle circle)
     return &instance->circles.back();
 }
 
+void Shapes_2D::delete_shape(unsigned int index, TYPES type)
+{
+    switch (type) {
+        case LINE:
+            instance->lines.erase(instance->lines.begin() + index);
+            break;
+        case TRIANGLE:
+            instance->triangles.erase(instance->triangles.begin() + index);
+            break;
+        case QUAD :
+            instance->quads.erase(instance->quads.begin() + index);
+            break;
+        case POLYGON :
+            instance->polygons.erase(instance->polygons.begin() + index);
+            break;
+        case CIRCLE :
+            instance->circles.erase(instance->circles.begin() + index);
+            break;
+        default:
+            break;
+    }
+}
+
 void Shapes_2D::compute_vp(void)
 {
     int lines_count = instance->lines.size();

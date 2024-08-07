@@ -22,6 +22,8 @@ int main(int argc, char **argv, char **env)
     engine.add_mod_update_function(Game_manager::update_callback);
     engine.add_mod_display_function(Game_manager::draw_callback);
     engine.add_mod_init_function(Game_manager::init_callback);
+
+    engine.add_mod_reshape_function(Shapes_2D::compute_vp);
     // END MOD
 
     engine.start();
