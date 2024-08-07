@@ -21,7 +21,6 @@ class Polygon {
         int get_points_count(void) {return points_count;}
         void add_point(Coordinates point);
 
-        static Polygon create_circle(Coordinates center, float radius, int segments_count);
         static void draw(Polygon polygon, Color color);
 };
 

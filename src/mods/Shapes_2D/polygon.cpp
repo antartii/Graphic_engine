@@ -33,18 +33,3 @@ void Polygon::draw(Polygon polygon, Color color)
         glVertex2d(polygon.get_vp_point(i).x, polygon.get_vp_point(i).y);
     glEnd();
 }
-
-Polygon Polygon::create_circle(Coordinates center, float radius, int segments_count)
-{
-    std::vector<Coordinates> circle_points;
-    Coordinates temp_point;
-    float angle = 0;
-
-    for (int i = 0; i < segments_count; i += 1) {
-        angle = 2.0f * M_PI * i / segments_count;
-        temp_point.x = radius * cos(angle) + center.x;
-        temp_point.y = radius * sin(angle) + center.y;
-        circle_points.push_back(temp_point);
-    }
-    return Polygon(circle_points);
-}
