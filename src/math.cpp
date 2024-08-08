@@ -1,4 +1,4 @@
-#include "math.h"
+#include "mathematics.h"
 
 long double Math::maximum(long double a, long double b) {return (a > b ? a : b);}
 long double Math::minimum(long double a, long double b) {return (a > b ? b : a);}

@@ -34,6 +34,11 @@ class Shapes_2D
             ELLIPSE
         };
 
+        enum DRAW_MODE {
+            OUTLINE = 0,
+            FILL
+        };
+
         static Line *create_line(Line line);
         static Quad *create_quad(Quad quad);
         static Triangle *create_triangle(Triangle triangle);
@@ -42,11 +47,11 @@ class Shapes_2D
         static Ellipse *create_ellipse(Ellipse ellipse);
         static void delete_shape(unsigned int index, TYPES types);
         static void draw(Line line, Color color);
-        static void draw(Triangle triangle, Color color);
-        static void draw(Polygon polygon, Color color);
-        static void draw(Quad quad, Color color);
-        static void draw(Circle circle, Color color);
-        static void draw(Ellipse Ellipse, Color color);
+        static void draw(Triangle triangle, Color color, DRAW_MODE mode);
+        static void draw(Polygon polygon, Color color, DRAW_MODE mode);
+        static void draw(Quad quad, Color color, DRAW_MODE mode);
+        static void draw(Circle circle, Color color, DRAW_MODE mode);
+        static void draw(Ellipse Ellipse, Color color, DRAW_MODE mode);
 
         static void compute_vp(void);
 

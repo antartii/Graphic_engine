@@ -4,7 +4,7 @@
 #include <vector>
 #include "utils.h"
 #include "engine.h"
-#include "math.h"
+#include "mathematics.h"
 
 #ifndef CURVES_MAX_SEGMENTS_LENGTH
 #define CURVES_MAX_SEGMENTS_LENGTH 1
@@ -14,8 +14,6 @@ class Circle {
     private :
         float radius = 0;
         Coordinates center;
-        float angle_start = 0;
-        float angle_end = 360;
 
         unsigned int points_count = 0;
         std::vector<Coordinates> points;

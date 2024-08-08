@@ -17,7 +17,7 @@ std::vector<Coordinates> Circle::compute_points(Coordinates center, float radius
 
     if (segments_count < 3)
         segments_count = 3;
-    for (int i = 0; i < segments_count; i += 1) {
+    for (int i = 0; i < segments_count + 1; i += 1) {
         angle = Math::get_circle_radian(i) / segments_count;
         temp_point = Math::polar_coordinate(radius, angle) + center;
         points.push_back(temp_point);

@@ -3,7 +3,7 @@
 
 #include "utils.h"
 #include "engine.h"
-#include "math.h"
+#include "mathematics.h"
 
 #ifndef CURVES_MAX_SEGMENTS_LENGTH
 #define CURVES_MAX_SEGMENTS_LENGTH 1

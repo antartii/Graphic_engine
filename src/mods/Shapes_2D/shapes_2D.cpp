@@ -79,10 +79,10 @@ void Shapes_2D::compute_vp(void)
     for (int i = 0; i < ellipses_count; i += 1) instance->ellipses[i].compute_vp();
 }
 
-void Shapes_2D::draw(Circle circle, Color color)
+void Shapes_2D::draw(Circle circle, Color color, DRAW_MODE mode)
 {
     glColor3f(color.r, color.g, color.b);
-    glBegin(GL_POLYGON);
+    glBegin(mode == Shapes_2D::FILL ? GL_POLYGON : GL_LINE_LOOP);
     for (int i = 0; i < circle.get_points_count(); i += 1)
         glVertex2d(circle.get_vp_point(i).x, circle.get_vp_point(i).y);
     glEnd();
@@ -97,37 +97,37 @@ void Shapes_2D::draw(Line line, Color color)
     glEnd();
 }
 
-void Shapes_2D::draw(Polygon polygon, Color color)
+void Shapes_2D::draw(Polygon polygon, Color color, DRAW_MODE mode)
 {
     glColor3f(color.r, color.g, color.b);
-    glBegin(GL_POLYGON);
+    glBegin(mode == Shapes_2D::FILL ? GL_POLYGON : GL_LINE_LOOP);
     for (int i = 0; i < polygon.get_points_count(); i += 1)
         glVertex2d(polygon.get_vp_point(i).x, polygon.get_vp_point(i).y);
     glEnd();
 }
 
-void Shapes_2D::draw(Quad quad, Color color)
+void Shapes_2D::draw(Quad quad, Color color, DRAW_MODE mode)
 {
     glColor3f(color.r, color.g, color.b);
-    glBegin(GL_QUADS);
+    glBegin(mode == Shapes_2D::FILL ? GL_QUADS : GL_LINE_LOOP);
     for (int i = 0; i < 4; i += 1)
         glVertex2d(quad.get_vp_point(i).x, quad.get_vp_point(i).y);
     glEnd();
 }
 
-void Shapes_2D::draw(Triangle triangle, Color color)
+void Shapes_2D::draw(Triangle triangle, Color color, DRAW_MODE mode)
 {
     glColor3f(color.r, color.g, color.b);
-    glBegin(GL_TRIANGLES);
+    glBegin(mode == Shapes_2D::FILL ? GL_TRIANGLES : GL_LINE_LOOP);
     for (int i = 0; i < 3; i += 1)
         glVertex2d(triangle.get_vp_point(i).x, triangle.get_vp_point(i).y);
     glEnd();
 }
 
-void Shapes_2D::draw(Ellipse ellipse, Color color)
+void Shapes_2D::draw(Ellipse ellipse, Color color, DRAW_MODE mode)
 {
     glColor3f(color.r, color.g, color.b);
-    glBegin(GL_POLYGON);
+    glBegin(mode == Shapes_2D::FILL ? GL_POLYGON : GL_LINE_LOOP);
     for (int i = 0; i < ellipse.get_points_count(); i += 1)
         glVertex2d(ellipse.get_vp_point(i).x, ellipse.get_vp_point(i).y);
     glEnd();
