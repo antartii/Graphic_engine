@@ -12,7 +12,7 @@ class Game_manager {
         Engine *engine;
 
         // TEST
-        Circle *test;
+        Ellipse *test;
         Color red = Color(1, 0, 0);
         // END OF TEST
 

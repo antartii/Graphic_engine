@@ -5,8 +5,8 @@ void Game_manager::init(void)
     engine->set_window_title("retest");
     engine->set_window_size(Size(300, 300));
     engine->set_window_pos(Coordinates(0, 0));
-
-    test = Shapes_2D::create_circle(Circle(Coordinates(300, 300), 200));
+    float thing[2] = {200, 500};
+    test = Shapes_2D::create_ellipse(Ellipse(Coordinates(300, 300), thing));
     //Shapes_2D::delete_shape(0, Shapes_2D::CIRCLE);
 }
 

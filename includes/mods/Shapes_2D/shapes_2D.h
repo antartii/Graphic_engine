@@ -6,6 +6,7 @@
     #include "quad.h"
     #include "polygon.h"
     #include "circle.h"
+    #include "ellipse.h"
 
     #include <vector>
 
@@ -17,6 +18,7 @@ class Shapes_2D
         std::vector<Quad> quads;
         std::vector<Polygon> polygons;
         std::vector<Circle> circles;
+        std::vector<Ellipse> ellipses;
 
         static Shapes_2D *instance;
 
@@ -28,7 +30,8 @@ class Shapes_2D
             TRIANGLE,
             QUAD,
             POLYGON,
-            CIRCLE
+            CIRCLE,
+            ELLIPSE
         };
 
         static Line *create_line(Line line);
@@ -36,12 +39,14 @@ class Shapes_2D
         static Triangle *create_triangle(Triangle triangle);
         static Polygon *create_polygon(Polygon polygon);
         static Circle *create_circle(Circle circle);
+        static Ellipse *create_ellipse(Ellipse ellipse);
         static void delete_shape(unsigned int index, TYPES types);
         static void draw(Line line, Color color);
         static void draw(Triangle triangle, Color color);
         static void draw(Polygon polygon, Color color);
         static void draw(Quad quad, Color color);
         static void draw(Circle circle, Color color);
+        static void draw(Ellipse Ellipse, Color color);
 
         static void compute_vp(void);
 

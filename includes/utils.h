@@ -32,8 +32,9 @@ class Coordinates {
         Coordinates() {}
         Coordinates(int x, int y): x(x), y(y) {}
         Coordinates(int x, int y, int z): x(x), y(y), z(z) {}
-
-        static void draw(Coordinates point, Color color, Size window);
 };
+
+float maximum(float a, float b);
+float minimum(float a, float b);
 
 #endif
