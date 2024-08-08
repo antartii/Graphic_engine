@@ -3,7 +3,6 @@
 
 #include "engine.h"
 #include "utils.h"
-#include <cmath>
 
 class Polygon {
     private :

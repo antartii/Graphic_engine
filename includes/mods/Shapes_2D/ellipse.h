@@ -2,11 +2,11 @@
 #define SHAPES_2D_ELLIPSE
 
 #include "utils.h"
-#include <cmath>
 #include "engine.h"
+#include "math.h"
 
-#ifndef CURVES_SEGMENTS_LENGHT
-#define CURVES_SEGMENTS_LENGHT 1
+#ifndef CURVES_MAX_SEGMENTS_LENGTH
+#define CURVES_MAX_SEGMENTS_LENGTH 1
 #endif
 
 class Ellipse
@@ -16,7 +16,7 @@ class Ellipse
         Coordinates center;
         float rotation_angle = 0;
 
-        int points_count = 0;
+        unsigned int points_count = 0;
         std::vector<Coordinates> points;
         std::vector<Coordinates> vp_points;
 

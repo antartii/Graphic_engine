@@ -3,6 +3,10 @@
 
     #include <vector>
     #include <GL/freeglut.h>
+    #include <iostream>
+
+    #define PI 3.14159265358979323846264338327950288L
+    #define LONG_DOUBLE_THRESHOLD 1e-10
 
 class Color {
     public :
@@ -32,9 +36,9 @@ class Coordinates {
         Coordinates() {}
         Coordinates(int x, int y): x(x), y(y) {}
         Coordinates(int x, int y, int z): x(x), y(y), z(z) {}
-};
 
-float maximum(float a, float b);
-float minimum(float a, float b);
+        Coordinates operator+(Coordinates coord) {return Coordinates(x + coord.x, y + coord.y, z + coord.z);}
+        Coordinates operator+=(Coordinates coord);
+};
 
 #endif
