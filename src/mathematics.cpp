@@ -3,7 +3,6 @@
 long double Math::maximum(long double a, long double b) {return (a > b ? a : b);}
 long double Math::minimum(long double a, long double b) {return (a > b ? b : a);}
 long double Math::get_circle_circonference(long double radius) {return 2.0L * PI * radius;}
-long double Math::get_circle_radian(long double radians) {return 2.0L * PI * radians;}
 long double Math::abs(long double x) {return (x < 0 ? x * -1L: x);}
 
 long double Math::pow(long double x, int power)

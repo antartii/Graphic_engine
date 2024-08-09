@@ -14,6 +14,8 @@ class Circle {
     private :
         float radius = 0;
         Coordinates center;
+        float angle = 360;
+        float rotation = 0;
 
         unsigned int points_count = 0;
         std::vector<Coordinates> points;
@@ -21,7 +23,7 @@ class Circle {
 
     public :
         Circle() {}
-        Circle(Coordinates center, float radius);
+        Circle(Coordinates center, float radius, float angle, float rotation);
 
         Coordinates get_point(unsigned int index) {return (index < points_count ? points[index] : Coordinates(0, 0));}
         Coordinates get_vp_point(unsigned int index) {return (index < points_count ? vp_points[index] : Coordinates(0, 0));}
@@ -30,7 +32,7 @@ class Circle {
         void set_center(Coordinates center);
         void compute_vp(void);
 
-        static std::vector<Coordinates> compute_points(Coordinates center, float radius);
+        static std::vector<Coordinates> compute_points(Coordinates center, float radius, float angle, float rotation);
 };
 
 #endif

@@ -9,7 +9,6 @@ class Math
         static long double maximum(long double a, long double b);
         static long double minimum(long double a, long double b);
         static long double get_circle_circonference(long double radius);
-        static long double get_circle_radian(long double radians);
         static long double pow(long double x, int power);
         static long double factorial(long double x);
         static long double cos(long double x);
