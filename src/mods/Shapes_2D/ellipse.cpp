@@ -24,7 +24,7 @@ std::vector<Coordinates> Ellipse::compute_points(Coordinates center, float radiu
     if (segments_count < 3)
         segments_count = 3;
     points.push_back(center);
-    for (int i = 0; i < segments_count / (360.0f / angle) + 1; i += 1) {
+    for (int i = 0; i <= segments_count / (360.0f / angle); i += 1) {
         segment_angle = Math::get_circle_circonference(i) / segments_count;
         temp_point = Math::cartesian_coordinates(radius[0], radius[1], segment_angle);
         temp_point = Math::apply_rotation(temp_point, rotation_angle_radian) + center;

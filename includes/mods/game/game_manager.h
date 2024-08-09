@@ -4,6 +4,8 @@
 #include "engine.h"
 #include "shapes_2D.h"
 
+#include <iostream>
+
 class Engine;
 
 class Game_manager {
@@ -12,7 +14,7 @@ class Game_manager {
         Engine *engine;
 
         // TEST
-        Ellipse *test;
+        Bezier_curve *test;
         Color red = Color(1, 0, 0);
         // END OF TEST
 

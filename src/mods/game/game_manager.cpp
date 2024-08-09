@@ -6,7 +6,12 @@ void Game_manager::init(void)
     engine->set_window_size(Size(300, 300));
     engine->set_window_pos(Coordinates(0, 0));
     float thing[2] = {50, 100};
-    test = Shapes_2D::create_ellipse(Ellipse(Coordinates(150, 150), thing, 50, 180));
+    test = Shapes_2D::create_bezier_curve(Bezier_curve((std::vector<Coordinates>){
+        Coordinates(0, 0),
+        Coordinates(50, 100),
+        Coordinates(100, 0),
+    }));
+    printf("%Lf\n", Math::binomial_coef(14, 2));
     //Shapes_2D::delete_shape(0, Shapes_2D::CIRCLE);
 }
 

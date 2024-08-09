@@ -36,6 +36,12 @@ Ellipse *Shapes_2D::create_ellipse(Ellipse ellipse)
     return &instance->ellipses.back();
 }
 
+Bezier_curve *Shapes_2D::create_bezier_curve(Bezier_curve bezier_curve)
+{
+    instance->bezier_curves.push_back(bezier_curve);
+    return &instance->bezier_curves.back();
+}
+
 void Shapes_2D::delete_shape(unsigned int index, TYPES type)
 {
     switch (type) {
@@ -56,6 +62,9 @@ void Shapes_2D::delete_shape(unsigned int index, TYPES type)
             break;
         case ELLIPSE :
             instance->ellipses.erase(instance->ellipses.begin() + index);
+            break;
+        case BEZIER_CURVES :
+            instance->bezier_curves.erase(instance->bezier_curves.begin() + index);
             break;
         default:
             break;
@@ -130,5 +139,14 @@ void Shapes_2D::draw(Ellipse ellipse, Color color, DRAW_MODE mode)
     glBegin(mode == Shapes_2D::FILL ? GL_POLYGON : GL_LINE_LOOP);
     for (int i = 0; i < ellipse.get_points_count(); i += 1)
         glVertex2d(ellipse.get_vp_point(i).x, ellipse.get_vp_point(i).y);
+    glEnd();
+}
+
+void Shapes_2D::draw(Bezier_curve bezier_curve, Color color, DRAW_MODE mode)
+{
+    glColor3f(color.r, color.g, color.b);
+    glBegin(mode == Shapes_2D::FILL ? GL_POLYGON : GL_LINE_LOOP);
+    for (int i = 0; i < bezier_curve.get_points_count(); i += 1)
+        glVertex2d(bezier_curve.get_vp_point(i).x, bezier_curve.get_vp_point(i).y);
     glEnd();
 }

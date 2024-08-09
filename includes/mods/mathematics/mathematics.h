@@ -21,6 +21,9 @@ class Math
         static Coordinates polar_coordinate(long double r, long double angle) {return Coordinates(r * Math::cos(angle), r * Math::sin(angle));}
         static Coordinates cartesian_coordinates(long double a, long double b, long double angle) {return Coordinates(a * Math::cos(angle), b * Math::sin(angle));}
         static Coordinates apply_rotation(Coordinates origin, long double angle);
+        static long double sqrt(long double x);
+        static long double distance(Coordinates p1, Coordinates p2);
+        static long double binomial_coef(long double n, long double k);
 };
 
 #endif
