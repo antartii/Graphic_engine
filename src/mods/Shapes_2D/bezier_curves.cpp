@@ -15,17 +15,19 @@ std::vector<Coordinates> Bezier_curve::compute_points(std::vector<Coordinates> c
     int control_polygon_lenght = 0;
     int segments_count = 0;
     Coordinates temp_point;
-    int n = control_points.size();
+    int n = control_points.size() - 1;
+    long double term = 0;
 
-    for (int i = 0; i < n - 1; i += 1)
+    for (int i = 0; i <= n; i += 1)
         control_polygon_lenght += Math::distance(control_points[i], control_points[i + 1]);
     segments_count = control_polygon_lenght / CURVES_MAX_SEGMENTS_LENGTH;
     for (int i = 0; i <= segments_count; i += 1) {
         t = (long double) i / segments_count;
         temp_point = Coordinates(0, 0);
-        for (int j = 1; j <= n; j += 1) {
-            temp_point.x += Math::binomial_coef(n, j) * Math::pow(1 - t, n - j) * Math::pow(t, j) * control_points[j - 1].x;
-            temp_point.y += Math::binomial_coef(n, j) * Math::pow(1 - t, n - j) * Math::pow(t, j) * control_points[j - 1].y;
+        for (int j = 0; j <= n; j += 1) {
+            term = Math::binomial_coef(n, j) * Math::pow(1 - t, n - j) * Math::pow(t, j);
+            temp_point.x += term * control_points[j].x;
+            temp_point.y += term * control_points[j].y;
         }
         points.push_back(temp_point);
     }

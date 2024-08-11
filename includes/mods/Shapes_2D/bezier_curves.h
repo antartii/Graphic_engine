@@ -22,11 +22,11 @@ class Bezier_curve
 
         void compute_vp(void);
         int get_points_count(void) {return points_count;}
+        Coordinates get_point(unsigned int index) {return (index < points_count ? points[index] : Coordinates(0, 0));}
         Coordinates get_vp_point(unsigned int index) {return (index < points_count ? vp_points[index] : Coordinates(0, 0));}
 
         static std::vector<Coordinates> compute_points(std::vector<Coordinates> control_points);
-        static std::vector<Coordinates> compute_points_quadratic(Coordinates control_points[3]);
-        static std::vector<Coordinates> compute_points_cubic(Coordinates control_points[4]);
+        static std::vector<Coordinates> compute_points2(std::vector<Coordinates> control_points);
 };
 
 #endif

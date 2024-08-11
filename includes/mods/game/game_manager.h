@@ -14,7 +14,7 @@ class Game_manager {
         Engine *engine;
 
         // TEST
-        Bezier_curve *test;
+        Drawable *test;
         Color red = Color(1, 0, 0);
         // END OF TEST
 

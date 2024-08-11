@@ -42,6 +42,12 @@ Bezier_curve *Shapes_2D::create_bezier_curve(Bezier_curve bezier_curve)
     return &instance->bezier_curves.back();
 }
 
+Drawable *Shapes_2D::create_drawable(Drawable drawable)
+{
+    instance->drawables.push_back(drawable);
+    return &instance->drawables.back();
+}
+
 void Shapes_2D::delete_shape(unsigned int index, TYPES type)
 {
     switch (type) {
@@ -66,6 +72,9 @@ void Shapes_2D::delete_shape(unsigned int index, TYPES type)
         case BEZIER_CURVES :
             instance->bezier_curves.erase(instance->bezier_curves.begin() + index);
             break;
+        case DRAWABLE :
+            instance->drawables.erase(instance->drawables.begin() + index);
+            break;
         default:
             break;
     }
@@ -79,6 +88,8 @@ void Shapes_2D::compute_vp(void)
     int polygons_count = instance->polygons.size();
     int circles_count = instance->circles.size();
     int ellipses_count = instance->ellipses.size();
+    int bezier_curves_count = instance->bezier_curves.size();
+    int drawables_count = instance->drawables.size();
 
     for (int i = 0; i < lines_count; i += 1) instance->lines[i].compute_vp();
     for (int i = 0; i < triangles_count; i += 1) instance->triangles[i].compute_vp();
@@ -86,6 +97,8 @@ void Shapes_2D::compute_vp(void)
     for (int i = 0; i < polygons_count; i += 1) instance->polygons[i].compute_vp();
     for (int i = 0; i < circles_count; i += 1) instance->circles[i].compute_vp();
     for (int i = 0; i < ellipses_count; i += 1) instance->ellipses[i].compute_vp();
+    for (int i = 0; i < bezier_curves_count; i += 1) instance->bezier_curves[i].compute_vp();
+    for (int i = 0; i < drawables_count; i += 1) instance->drawables[i].compute_vp();
 }
 
 void Shapes_2D::draw(Circle circle, Color color, DRAW_MODE mode)
@@ -148,5 +161,14 @@ void Shapes_2D::draw(Bezier_curve bezier_curve, Color color, DRAW_MODE mode)
     glBegin(mode == Shapes_2D::FILL ? GL_POLYGON : GL_LINE_LOOP);
     for (int i = 0; i < bezier_curve.get_points_count(); i += 1)
         glVertex2d(bezier_curve.get_vp_point(i).x, bezier_curve.get_vp_point(i).y);
+    glEnd();
+}
+
+void Shapes_2D::draw(Drawable drawable, Color color, DRAW_MODE mode)
+{
+    glColor3f(color.r, color.g, color.b);
+    glBegin(mode == Shapes_2D::FILL ? GL_POLYGON : GL_LINE_LOOP);
+    for (int i = 0; i < drawable.get_points_count(); i += 1)
+        glVertex2d(drawable.get_vp_point(i).x, drawable.get_vp_point(i).y);
     glEnd();
 }

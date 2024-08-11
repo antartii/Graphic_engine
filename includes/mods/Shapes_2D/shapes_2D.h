@@ -1,13 +1,7 @@
 #ifndef SHAPES_2D
     #define SHAPES_2D
 
-    #include "line.h"
-    #include "triangle.h"
-    #include "quad.h"
-    #include "polygon.h"
-    #include "circle.h"
-    #include "ellipse.h"
-    #include "bezier_curves.h"
+    #include "drawable.h"
 
     #include <vector>
 
@@ -21,6 +15,7 @@ class Shapes_2D
         std::vector<Circle> circles;
         std::vector<Ellipse> ellipses;
         std::vector<Bezier_curve> bezier_curves;
+        std::vector<Drawable> drawables;
 
         static Shapes_2D *instance;
 
@@ -34,7 +29,8 @@ class Shapes_2D
             POLYGON,
             CIRCLE,
             ELLIPSE,
-            BEZIER_CURVES
+            BEZIER_CURVES,
+            DRAWABLE
         };
 
         enum DRAW_MODE {
@@ -49,6 +45,7 @@ class Shapes_2D
         static Circle *create_circle(Circle circle);
         static Ellipse *create_ellipse(Ellipse ellipse);
         static Bezier_curve *create_bezier_curve(Bezier_curve bezier_curve);
+        static Drawable *create_drawable(Drawable drawable);
         static void delete_shape(unsigned int index, TYPES types);
         static void draw(Line line, Color color);
         static void draw(Triangle triangle, Color color, DRAW_MODE mode);
@@ -57,6 +54,7 @@ class Shapes_2D
         static void draw(Circle circle, Color color, DRAW_MODE mode);
         static void draw(Ellipse Ellipse, Color color, DRAW_MODE mode);
         static void draw(Bezier_curve bezier_curve, Color color, DRAW_MODE mode);
+        static void draw(Drawable drawable, Color color, DRAW_MODE mode);
 
         static void compute_vp(void);
 

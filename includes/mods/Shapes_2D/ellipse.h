@@ -26,6 +26,7 @@ class Ellipse
         Ellipse(Coordinates center, float radius[2], float angle, float rotation_angle);
 
         int get_points_count(void) {return points_count;}
+        Coordinates get_point(unsigned int index) {return (index < points_count ? points[index] : Coordinates(0, 0));}
         Coordinates get_vp_point(unsigned int index) {return (index < points_count ? vp_points[index] : Coordinates(0, 0));}
         void set_radius(unsigned int index, float radius);
         void set_center(Coordinates center);
