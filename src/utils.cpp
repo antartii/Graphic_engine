@@ -15,8 +15,20 @@ Color Color::from_hexa(std::string hexcolor)
 
     if (hexcolor.size() != 6)
         return Color();
-    color.r = hexcolor[0] * 16 + hexcolor[1];
-    color.g = hexcolor[2] * 16 + hexcolor[3];
-    color.b = hexcolor[4] * 16 + hexcolor[5];
+    color.r = char_to_hex(hexcolor[0]) * 16 + char_to_hex(hexcolor[1]);
+    color.g = char_to_hex(hexcolor[2]) * 16 + char_to_hex(hexcolor[3]);
+    color.b = char_to_hex(hexcolor[4]) * 16 + char_to_hex(hexcolor[5]);
     return color;
 }
+
+Color Color::to_ratio()
+{
+    Color ratio_color;
+
+    ratio_color.r = r / 255.0f;
+    ratio_color.g = g / 255.0f;
+    ratio_color.b = b / 255.0f;
+    return ratio_color;
+}
+
+unsigned int char_to_hex(char c) {return c - '0';}

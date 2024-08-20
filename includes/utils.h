@@ -8,12 +8,16 @@
     #define PI 3.14159265358979323846264338327950288L
     #define LONG_DOUBLE_THRESHOLD 1e-10
 
+unsigned int char_to_hex(char c);
+
 class Color {
     public :
         float r, g, b = 0;
     
         Color(){};
         Color(float r, float g, float b): r(r), g(g), b(b) {}
+
+        Color to_ratio();
 
         static Color from_hexa(std::string hexcolor);
         static Color red(){return Color(1, 0, 0);}
