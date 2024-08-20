@@ -50,8 +50,9 @@ void Engine::set_window_pos(Coordinates pos)
 
 void Engine::init()
 {
-
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // BY DEFAULT (do dev want to set it manually ?)
+    window_size = Size(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
+    screen_size = Size(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
     glutInitWindowSize(window_size.width, window_size.height);
     glutInitWindowPosition(window_position.x, window_position.y);
     glutCreateWindow(window_title.c_str());
@@ -59,6 +60,7 @@ void Engine::init()
     glutDisplayFunc(Engine::display_callback);
     glutReshapeFunc(Engine::reshape_callback);
     glPointSize(1.0f);
+    set_background(background_color);
     for (int i = 0; i < plugin_init_functions_count; i += 1)
         plugin_init_functions[i]();
 }
@@ -112,4 +114,10 @@ void Engine::draw(Coordinates point, Color color)
     glBegin(GL_POINTS);
     glVertex2f(vp_point.x, vp_point.y);
     glEnd();
+}
+
+void Engine::set_background(Color color)
+{
+    background_color = color;
+    glClearColor(color.r, color.g, color.b, 1.0f);
 }
