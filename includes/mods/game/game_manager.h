@@ -1,10 +1,16 @@
 #ifndef GAME_MANAGER
 #define GAME_MANAGER
 
+
+#include <iostream>
+
 #include "engine.h"
 #include "shapes_2D.h"
 
-#include <iostream>
+// Chat includes
+#include "user.h"
+#include "chat_message.h"
+#include "server.h"
 
 class Engine;
 
@@ -13,10 +19,12 @@ class Game_manager {
         static Game_manager *instance;
         Engine *engine;
 
-        // TEST
-        Drawable *test;
-        Color red = Color(1, 0, 0);
-        // END OF TEST
+        // GAME CODE STARTING HERE
+        User *current_streamer;
+        User *test;
+
+        Server server;
+        // GAME CODE ENDING HERE
 
     public:
         Game_manager() {};
