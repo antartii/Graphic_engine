@@ -36,6 +36,7 @@ void Game_manager::init(void)
         Coordinates(100, 100)
     }));*/
     printf("%Lf\n", Math::binomial_coef(14, 2));
+    engine->set_background(Color::blue());
     //Shapes_2D::delete_shape(0, Shapes_2D::CIRCLE);
 }
 

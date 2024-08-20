@@ -4,31 +4,30 @@ Engine::Engine(int *argc, char **argv):
     argc(*argc), argv(argv)
 {
     glutInit(argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // BY DEFAULT (do dev want to set it manually ?)
 }
 
-void Engine::add_mod_update_function(void (*mod_update_function)(int, int))
+void Engine::add_plugin_update_function(void (*plugin_update_function)(int, int))
 {
-    this->mod_update_functions.push_back(mod_update_function);
-    mod_update_functions_count += 1;
+    this->plugin_update_functions.push_back(plugin_update_function);
+    plugin_update_functions_count += 1;
 }
 
-void Engine::add_mod_display_function(void (*mod_display_function)())
+void Engine::add_plugin_display_function(void (*plugin_display_function)())
 {
-    this->mod_display_functions.push_back(mod_display_function);
-    mod_display_functions_count += 1;
+    this->plugin_display_functions.push_back(plugin_display_function);
+    plugin_display_functions_count += 1;
 }
 
-void Engine::add_mod_init_function(void (*mod_init_function)())
+void Engine::add_plugin_init_function(void (*plugin_init_function)())
 {
-    this->mod_init_functions.push_back(mod_init_function);
-    mod_init_functions_count += 1;
+    this->plugin_init_functions.push_back(plugin_init_function);
+    plugin_init_functions_count += 1;
 }
 
-void Engine::add_mod_reshape_function(void (*mod_reshape_function)())
+void Engine::add_plugin_reshape_function(void (*plugin_reshape_function)())
 {
-    this->mod_reshape_functions.push_back(mod_reshape_function);
-    mod_reshape_functions_count += 1;
+    this->plugin_reshape_functions.push_back(plugin_reshape_function);
+    plugin_reshape_functions_count += 1;
 }
 
 void Engine::set_window_title(std::string title)
@@ -51,37 +50,38 @@ void Engine::set_window_pos(Coordinates pos)
 
 void Engine::init()
 {
-    for (int i = 0; i < mod_init_functions_count; i += 1)
-        mod_init_functions[i]();
-}
 
-void Engine::start()
-{
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // BY DEFAULT (do dev want to set it manually ?)
+    glutInitWindowSize(window_size.width, window_size.height);
+    glutInitWindowPosition(window_position.x, window_position.y);
     glutCreateWindow(window_title.c_str());
     glutTimerFunc(600 / fps, Engine::update_callback, 0);
     glutDisplayFunc(Engine::display_callback);
     glutReshapeFunc(Engine::reshape_callback);
-    glutInitWindowSize(window_size.width, window_size.height);
-    glutInitWindowPosition(window_position.x, window_position.y);
     glPointSize(1.0f);
+    for (int i = 0; i < plugin_init_functions_count; i += 1)
+        plugin_init_functions[i]();
+}
 
+void Engine::start()
+{
     init();
     glutMainLoop();
 }
 
 void Engine::update(int fps, int value)
 {
-    for (int i = 0; i < mod_update_functions_count; i += 1)
-        mod_update_functions[i](fps, value);
+    for (int i = 0; i < plugin_update_functions_count; i += 1)
+        plugin_update_functions[i](fps, value);
     glutPostRedisplay();
     glutTimerFunc(600 / fps, Engine::update_callback, 0);
 }
 
 void Engine::display()
 {
-    glClear(GL_COLOR_BUFFER_BIT);    
-    for (int i = 0; i < mod_display_functions_count; i += 1)
-        mod_display_functions[i]();
+    glClear(GL_COLOR_BUFFER_BIT);
+    for (int i = 0; i < plugin_display_functions_count; i += 1)
+        plugin_display_functions[i]();
     glutSwapBuffers();
 }
 
@@ -89,8 +89,8 @@ void Engine::reshape(int w, int h)
 {
     window_size.width = w;
     window_size.height = h;
-    for (int i = 0; i < mod_reshape_functions_count; i += 1)
-        mod_reshape_functions[i]();
+    for (int i = 0; i < plugin_reshape_functions_count; i += 1)
+        plugin_reshape_functions[i]();
     glViewport(0, 0, w, h);
 }
 

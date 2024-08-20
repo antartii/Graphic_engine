@@ -33,7 +33,7 @@ class Shapes_2D
             DRAWABLE
         };
 
-        enum DRAW_MODE {
+        enum DRAW_PLUGINE {
             OUTLINE = 0,
             FILL
         };
@@ -48,13 +48,13 @@ class Shapes_2D
         static Drawable *create_drawable(Drawable drawable);
         static void delete_shape(unsigned int index, TYPES types);
         static void draw(Line line, Color color);
-        static void draw(Triangle triangle, Color color, DRAW_MODE mode);
-        static void draw(Polygon polygon, Color color, DRAW_MODE mode);
-        static void draw(Quad quad, Color color, DRAW_MODE mode);
-        static void draw(Circle circle, Color color, DRAW_MODE mode);
-        static void draw(Ellipse Ellipse, Color color, DRAW_MODE mode);
-        static void draw(Bezier_curve bezier_curve, Color color, DRAW_MODE mode);
-        static void draw(Drawable drawable, Color color, DRAW_MODE mode);
+        static void draw(Triangle triangle, Color color, DRAW_PLUGINE plugine);
+        static void draw(Polygon polygon, Color color, DRAW_PLUGINE plugine);
+        static void draw(Quad quad, Color color, DRAW_PLUGINE plugine);
+        static void draw(Circle circle, Color color, DRAW_PLUGINE plugine);
+        static void draw(Ellipse Ellipse, Color color, DRAW_PLUGINE plugine);
+        static void draw(Bezier_curve bezier_curve, Color color, DRAW_PLUGINE plugine);
+        static void draw(Drawable drawable, Color color, DRAW_PLUGINE plugine);
 
         static void compute_vp(void);
 
