@@ -14,7 +14,8 @@ class Engine {
 
         unsigned int display_plugine = GLUT_DOUBLE | GLUT_RGB;
         std::string window_title = "window";
-        Size window_size = Size(300, 300);
+        Size screen_size = Size(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
+        Size window_size = Size(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
         Coordinates window_position = Coordinates(0, 0);
         int fps = 60;
 
@@ -34,10 +35,12 @@ class Engine {
         Engine(int *argc, char **argv);
 
         Size get_window_size(void) {return window_size;}
+        Size get_screen_size(void) {return screen_size;}
         void set_window_title(std::string title);
         void set_window_size(Size size);
         void set_window_pos(Coordinates pos);
         void set_background(Color color) {glClearColor(color.r, color.g, color.b, 1.0f);}
+        void toggle_fullscreen() {glutFullScreen();}
 
         void init();
         void start();
