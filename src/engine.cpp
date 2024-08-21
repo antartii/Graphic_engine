@@ -118,6 +118,6 @@ void Engine::draw(Coordinates point, Color color)
 
 void Engine::set_background(Color color)
 {
-    background_color = color;
-    glClearColor(color.r, color.g, color.b, 1.0f);
+    background_color = color.to_ratio();
+    glClearColor(background_color.r, background_color.g, background_color.b, 1.0f);
 }

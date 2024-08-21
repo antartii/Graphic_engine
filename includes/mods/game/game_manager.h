@@ -3,6 +3,7 @@
 
 
 #include <iostream>
+#include <cstdlib>
 
 #include "engine.h"
 #include "shapes_2D.h"
@@ -20,8 +21,8 @@ class Game_manager {
         Engine *engine;
 
         // GAME CODE STARTING HERE
-        User *current_streamer;
-        User *test;
+        unsigned int current_streamer;
+        unsigned int test;
 
         Server server;
         // GAME CODE ENDING HERE
