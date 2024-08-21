@@ -24,6 +24,7 @@ class Math
         static long double sqrt(long double x);
         static long double distance(Coordinates p1, Coordinates p2);
         static long double binomial_coef(long double n, long double k);
+        static unsigned int random_int_LCG(int seed);
 };
 
 #endif
