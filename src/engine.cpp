@@ -56,7 +56,7 @@ void Engine::init()
     glutInitWindowSize(window_size.width, window_size.height);
     glutInitWindowPosition(window_position.x, window_position.y);
     glutCreateWindow(window_title.c_str());
-    glutTimerFunc(600 / fps, Engine::update_callback, 0);
+    glutTimerFunc(get_frame_duration(fps), Engine::update_callback, 0);
     glutDisplayFunc(Engine::display_callback);
     glutReshapeFunc(Engine::reshape_callback);
     glPointSize(1.0f);
@@ -73,10 +73,11 @@ void Engine::start()
 
 void Engine::update(int fps, int value)
 {
+    timer += frame_duration;
     for (int i = 0; i < plugin_update_functions_count; i += 1)
         plugin_update_functions[i](fps, value);
     glutPostRedisplay();
-    glutTimerFunc(600 / fps, Engine::update_callback, 0);
+    glutTimerFunc(frame_duration, Engine::update_callback, 0);
 }
 
 void Engine::display()

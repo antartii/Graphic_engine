@@ -20,7 +20,7 @@ void Game_manager::init(void)
 
 void Game_manager::update(void)
 {
-
+    
 }
 
 void Game_manager::draw(void)

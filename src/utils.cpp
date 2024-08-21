@@ -32,3 +32,4 @@ Color Color::to_ratio()
 }
 
 unsigned int char_to_hex(char c) {return c - '0';}
+float get_frame_duration(unsigned int fps) {return 1.0f / fps;}

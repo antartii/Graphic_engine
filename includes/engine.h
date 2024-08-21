@@ -5,6 +5,7 @@
     #include <iostream>
     #include <vector>
 
+    #include "system.h"
     #include "utils.h"
 
 class Engine {
@@ -18,6 +19,8 @@ class Engine {
         Size window_size = Size(0, 0);
         Coordinates window_position = Coordinates(0, 0);
         int fps = 60;
+        float frame_duration = get_frame_duration(fps);
+        float timer = 0;
         Color background_color = Color(0, 0, 0);
 
         static Engine *instance;

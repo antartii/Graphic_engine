@@ -7,8 +7,10 @@
 
     #define PI 3.14159265358979323846264338327950288L
     #define LONG_DOUBLE_THRESHOLD 1e-10
+    #define INT_MAX_SIZE 0xFFFFFFFF
 
 unsigned int char_to_hex(char c);
+float get_frame_duration(unsigned int fps);
 
 class Color {
     public :
