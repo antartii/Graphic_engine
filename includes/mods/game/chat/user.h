@@ -1,7 +1,7 @@
 #ifndef GAME_USER
     #define GAME_USER
 
-    #include "chat_message.h"
+    #include "chat.h"
 
     #include <vector>
     #include <iostream>

@@ -1,8 +1,9 @@
-#ifndef GAME_CHAT_MESSAGE
-    #define GAME_CHAT_MESSAGE
+#ifndef GAME_CHAT
+    #define GAME_CHAT
 
     #include <iostream>
-    #include "user.h"
+    #include "text.h"
+    #include <map>
 
 class Chat_message {
     private :
@@ -15,6 +16,7 @@ class Chat_message {
         Chat_message() {}
         Chat_message(unsigned int id_sender, std::string message, unsigned int id_receiver, unsigned int id): id_sender(id_sender), message(message), id_receiver(id_receiver), id(id) {}
 
+        unsigned int get_id() {return id;}
         unsigned int get_sender_id() {return id_sender;}
         unsigned int get_receiver_id() {return id_receiver;}
         std::string get_message() {return message;}

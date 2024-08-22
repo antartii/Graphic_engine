@@ -4,16 +4,23 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <map>
 
 #include "engine.h"
 #include "shapes_2D.h"
+#include "text.h"
 
 // Chat includes
 #include "user.h"
-#include "chat_message.h"
+#include "chat.h"
 #include "server.h"
+#include "chatbox.h"
 
 class Engine;
+
+// GAME 
+
+// END
 
 class Game_manager {
     private:
@@ -22,9 +29,13 @@ class Game_manager {
 
         // GAME CODE STARTING HERE
         unsigned int current_streamer;
-        unsigned int test;
+        unsigned int chatter_test;
 
         Server server;
+
+        Chatbox chatbox;
+        float chat_interval = 1;
+        float next_chat_timer = 0;
         // GAME CODE ENDING HERE
 
     public:

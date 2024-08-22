@@ -73,7 +73,6 @@ void Engine::start()
 
 void Engine::update(int fps, int value)
 {
-    timer += frame_duration;
     for (int i = 0; i < plugin_update_functions_count; i += 1)
         plugin_update_functions[i](fps, value);
     glutPostRedisplay();

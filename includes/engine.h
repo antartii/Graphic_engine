@@ -4,6 +4,8 @@
     #include <GL/freeglut.h>
     #include <iostream>
     #include <vector>
+    #include <map>
+    #include <chrono>
 
     #include "system.h"
     #include "utils.h"
@@ -19,8 +21,8 @@ class Engine {
         Size window_size = Size(0, 0);
         Coordinates window_position = Coordinates(0, 0);
         int fps = 60;
+        std::chrono::time_point<std::chrono::high_resolution_clock> timer_start = std::chrono::high_resolution_clock::now();
         float frame_duration = get_frame_duration(fps);
-        float timer = 0;
         Color background_color = Color(0, 0, 0);
 
         static Engine *instance;
@@ -40,6 +42,11 @@ class Engine {
 
         Size get_window_size(void) {return window_size;}
         Size get_screen_size(void) {return screen_size;}
+        float get_timer(void) {
+            std::chrono::time_point<std::chrono::high_resolution_clock> now = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<float> elapsed = now - timer_start;
+            return elapsed.count();
+        }
         void set_window_title(std::string title);
         void set_window_size(Size size);
         void set_window_pos(Coordinates pos);
