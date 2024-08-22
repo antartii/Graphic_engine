@@ -8,6 +8,14 @@ Coordinates Coordinates::operator+=(Coordinates coord)
     return *this;
 }
 
+Coordinates Coordinates::operator-=(Coordinates coord)
+{
+    x -= coord.x;
+    y -= coord.y;
+    z -= coord.z;
+    return *this;
+}
+
 Color Color::from_hexa(std::string hexcolor)
 {
     int index = 0;

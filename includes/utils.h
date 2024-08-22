@@ -46,6 +46,8 @@ class Coordinates {
 
         Coordinates operator+(Coordinates coord) {return Coordinates(x + coord.x, y + coord.y, z + coord.z);}
         Coordinates operator+=(Coordinates coord);
+        Coordinates operator-(Coordinates coord) {return Coordinates(x - coord.x, y - coord.y, z - coord.z);}
+        Coordinates operator-=(Coordinates coord);
 };
 
 #endif
