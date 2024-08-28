@@ -8,14 +8,11 @@ void Game_manager::init(void)
 
     current_streamer = server.create_user("traveler_anta");
     chatter_test = server.create_user("law san");
+    chatbox = Chatbox(&server, Coordinates(200, 150), server.get_user(current_streamer));
     server.create_chat_message(chatter_test, current_streamer, "hello !");
     server.create_chat_message(chatter_test, current_streamer, "how's life \ntoday ?");
     server.create_chat_message(chatter_test, current_streamer, "yeah me too....");
-
     next_chat_timer = engine->get_timer();
-
-    chatbox = Chatbox(&server, Coordinates(150, 150), server.get_user(current_streamer));
-    std::cout << server.get_user(current_streamer).get_username() << std::endl;
 
     // DEBUG
     std::vector<Chat_message> messages = server.get_chat(current_streamer);
@@ -29,7 +26,6 @@ void Game_manager::update(void)
     
     if (next_chat_timer <= current_timer) {
         next_chat_timer += chat_interval;
-        std::cout << std::endl << std::endl;
         server.create_chat_message(chatter_test, current_streamer, "yeah \nme too....");
         server.create_chat_message(chatter_test, current_streamer, "clip it guys");
         std::vector<Chat_message> messages = server.get_chat(current_streamer);

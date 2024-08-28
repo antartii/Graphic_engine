@@ -33,9 +33,11 @@ class Game_manager {
 
         Server server;
 
+        // --- chatbox
         Chatbox chatbox;
         float chat_interval = 1;
         float next_chat_timer = 0;
+        
         // GAME CODE ENDING HERE
 
     public:

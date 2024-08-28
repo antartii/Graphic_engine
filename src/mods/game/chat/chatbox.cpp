@@ -1,11 +1,5 @@
 #include "chatbox.h"
 
-void Chatbox::add_message(Chat_message message)
-{
-    messages.push_back(message);
-    texts.push_back(Text(message.get_message(), Coordinates(starting_coords.x + messages.size() * 18 * 1.33, starting_coords.y)));
-}
-
 void Chatbox::update_messages()
 {
     std::vector<Chat_message> new_chat_messages;

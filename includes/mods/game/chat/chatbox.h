@@ -12,7 +12,7 @@ class Chatbox {
     private :
         User user;
         std::vector<Chat_message> messages;
-        std::map<int, std::string> usernames;
+        std::vector<User> users;
         std::vector<Text> texts;
         Server *server;
         Coordinates starting_coords;
@@ -21,7 +21,6 @@ class Chatbox {
         Chatbox() {};
         Chatbox(Server *server, Coordinates starting_coords, User user): server(server), starting_coords(starting_coords), user(user) {}
 
-        void add_message(Chat_message message);
         void update_messages();
         void draw();
 };

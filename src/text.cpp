@@ -36,7 +36,6 @@ void Text::draw() {
 void Text::draw_line(std::string str, void *font, Coordinates vp_coords)
 {
     glRasterPos2f(vp_coords.x, vp_coords.y);
-    std::cout << str << " : " << vp_coords.x << " : " << vp_coords.y << std::endl;
     for (int j = 0; j < str.size(); j += 1)
         glutBitmapCharacter(font, str[j]);
 }
@@ -50,6 +49,5 @@ void Text::change_coord(Coordinates coords)
 void Text::translate_coord(Coordinates coords)
 {
     this->coords += coords;
-    std::cout << "ok ?" << std::endl;
     update_vp();
 }

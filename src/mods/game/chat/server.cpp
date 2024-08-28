@@ -42,9 +42,6 @@ void Server::DEBUG_show_chat_message(Chat_message chat_message)
 {
     User sender = get_user(chat_message.get_sender_id());
     User receiver = get_user(chat_message.get_receiver_id());
-
-    std::cout << "[" << sender.get_username() << "] => [" << receiver.get_username() << "] : " << std::endl;
-    std::cout << "\t" + chat_message.get_message() << std::endl;
 }
 
 std::vector<Chat_message> Server::get_chat_from_stamp(unsigned int id_chat_message_stamp)
