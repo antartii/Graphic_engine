@@ -20,6 +20,28 @@ class Engine;
 
 // GAME 
 
+class Current_streamer
+{
+    private :
+        unsigned int id;
+        User info;
+        Text *username_display;
+
+    public :
+        Current_streamer(){}
+        Current_streamer(unsigned int id, Server *server)
+        {
+            this->id = id;
+            info = server->get_user(id);
+            username_display = Text_storage::create_text(info.get_username(), Coordinates(150, 150));
+        }
+        void move_username_display(Coordinates new_coords) {username_display->change_coord(new_coords);}
+        void display_username() {username_display->draw();}
+        unsigned int get_id(void) {return id;}
+        User get_infos(void) {return info;}
+
+};
+
 // END
 
 class Game_manager {
@@ -28,8 +50,11 @@ class Game_manager {
         Engine *engine;
 
         // GAME CODE STARTING HERE
-        unsigned int current_streamer;
+        Current_streamer current_streamer;
+
+        // [test]
         unsigned int chatter_test;
+        // [end test]
 
         Server server;
 
@@ -37,7 +62,7 @@ class Game_manager {
         Chatbox chatbox;
         float chat_interval = 1;
         float next_chat_timer = 0;
-        
+
         // GAME CODE ENDING HERE
 
     public:

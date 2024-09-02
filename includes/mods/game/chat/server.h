@@ -10,8 +10,8 @@ class Server {
         std::vector<Chat_message> chat_messages;
         std::vector<User> users;
 
-        User *get_user_address(unsigned int id) {return (id - 1 >= users.size() ? nullptr : &(users[id - 1]));};
         int get_chat_message_index(unsigned int id);
+        User *get_user_address(unsigned int id) {return (id - 1 >= users.size() ? nullptr : &(users[id - 1]));}
 
     public:
         Server() {}

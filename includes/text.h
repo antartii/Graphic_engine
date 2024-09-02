@@ -3,6 +3,7 @@
 
 #include "utils.h"
 #include "engine.h"
+#include <deque>
 #include <sstream>
 #include <string>
 
@@ -17,6 +18,7 @@ class Text {
         std::vector<Coordinates> vp_coords;
         void *font = GLUT_BITMAP_HELVETICA_18;
         float height;
+        Size display_size;
 
     public :
         Text() {};
@@ -31,6 +33,22 @@ class Text {
 
         void update_vp();
         static void draw_line(std::string str, void *font, Coordinates vp_coordinates);
+};
+
+class Text_storage
+{
+    private :
+        std::deque<Text> texts;
+        static Text_storage *instance;
+
+    public :
+        static Text *create_text(std::string content, Coordinates coords)
+        {
+            instance->texts.push_back(Text(content, coords));
+            return &(instance->texts.back());
+        }
+
+        static void update_vp() {for (int i = 0; i < instance->texts.size(); i += 1) instance->texts[i].update_vp();}
 };
 
 #endif

@@ -2,7 +2,7 @@
 
 std::vector<std::string> str_split_line(std::string str)
 {
-    std::vector<std::string> splited_str = {str};
+    std::vector<std::string> splited_str;
     std::istringstream stream(str);
     std::string temp;
 

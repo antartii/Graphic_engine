@@ -37,6 +37,7 @@ class Engine {
         int plugin_reshape_functions_count = 0;
 
     public :
+
         Engine() {};
         Engine(int *argc, char **argv);
 

@@ -17,6 +17,8 @@ class Chatbox {
         Server *server;
         Coordinates starting_coords;
 
+        Size size;
+
     public :
         Chatbox() {};
         Chatbox(Server *server, Coordinates starting_coords, User user): server(server), starting_coords(starting_coords), user(user) {}
